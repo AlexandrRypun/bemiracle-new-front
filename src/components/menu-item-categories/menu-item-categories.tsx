@@ -23,13 +23,13 @@ const MenuItemCategories: React.FC = () => {
 
   return (
     <div>
-      <a href="#" onClick={(): void => setOpened(!opened)}>
+      <a href="/" onClick={(): void => setOpened(!opened)}>
         Categories
       </a>
       {opened && (
         <ul>
           {categories.map(({ id, name }) => (
-            <Link key={id} to={`/category/${id}`}>
+            <Link className="option" key={id} to={`/category/${id}`}>
               {name}
             </Link>
           ))}
