@@ -1,0 +1,30 @@
+.canvas-content {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    min-width: 450px;
+    z-index: 99;
+    background-color: #fff;
+    -webkit-transition: right 0.4s ease 0s;
+    -moz-transition: right 0.4s ease 0s;
+    -o-transition: right 0.4s ease 0s;
+    transition: right 0.4s ease 0s;
+    height: 100vh;
+}
+.canvas-content.opened {
+    right: 0;
+}
+.canvas-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+@media (max-width: 767px) {
+    .canvas-content {
+        min-width: 300px;
+    }
+}

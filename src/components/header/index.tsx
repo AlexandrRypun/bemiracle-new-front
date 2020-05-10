@@ -1,17 +1,21 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo, useLayoutEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import CategoriesList from './components/categories-list';
 import LanguageDropdown from './components/language-dropdown';
 import UserMenuDropdown from './components/user-menu-dropdown';
+import CartIcon from './components/cart-icon';
 import { Category } from '../../types/categories';
 import './styles.css';
+import useDetectClick from '../../hooks/use-detect-click';
 
 enum SubMenus {
   CATEGORIES = 'categories',
 }
 
 const Header: React.FC = () => {
+  const [domReady, setDomReady] = useState<boolean>(false);
+  useLayoutEffect(() => setDomReady(true), []);
   const { innerWidth } = window;
   const [categories, setCategories] = useState<Category[]>([]);
   useEffect(() => {
@@ -26,14 +30,16 @@ const Header: React.FC = () => {
   const [mobileMenuOpened, setMobileMenuOpened] = useState<boolean>(false);
   const [subMenuAlias, setSubMenuAlias] = useState<SubMenus | null>(null);
 
-  useEffect(() => {
-    document.onclick = function (e) {
-      const menuDiv = document.getElementById('mobile-menu');
-      if (menuDiv && e.clientX > menuDiv.offsetWidth) {
-        setMobileMenuOpened(false);
-      }
-    };
-  }, [setMobileMenuOpened]);
+  const ref = useRef(null);
+  const closeMobileMenu = useCallback(() => {
+    if (mobileMenuOpened) {
+      setMobileMenuOpened(false);
+    }
+  }, [mobileMenuOpened]);
+  useDetectClick({
+    ref,
+    onClickOutside: closeMobileMenu,
+  });
 
   const [subMenuContent, setSubMenuContent] = useState<React.ReactElement | null>(null);
   const getSubMenuContent = useCallback(
@@ -155,100 +161,7 @@ const Header: React.FC = () => {
                       <div className="menu-item block-user block-dreaming akasha-dropdown">
                         <UserMenuDropdown />
                       </div>
-                      <div className="block-minicart block-dreaming akasha-mini-cart akasha-dropdown">
-                        <div className="shopcart-dropdown block-cart-link" data-akasha="akasha-dropdown">
-                          <a className="block-link link-dropdown" href="#">
-                            <span className="flaticon-bag"></span>
-                            <span className="count">3</span>
-                          </a>
-                        </div>
-                        <div className="widget akasha widget_shopping_cart">
-                          <div className="widget_shopping_cart_content">
-                            <h3 className="minicart-title">
-                              Your Cart<span className="minicart-number-items">3</span>
-                            </h3>
-                            <ul className="akasha-mini-cart cart_list product_list_widget">
-                              <li className="akasha-mini-cart-item mini_cart_item">
-                                <a href="#" className="remove remove_from_cart_button">
-                                  ×
-                                </a>
-                                <a href="#">
-                                  <img
-                                    src="assets/images/apro134-1-600x778.jpg"
-                                    className="attachment-akasha_thumbnail size-akasha_thumbnail"
-                                    alt="img"
-                                    width="600"
-                                    height="778"
-                                  />
-                                  T-shirt with skirt – Pink&nbsp;
-                                </a>
-                                <span className="quantity">
-                                  1 ×{' '}
-                                  <span className="akasha-Price-amount amount">
-                                    <span className="akasha-Price-currencySymbol">$</span>150.00
-                                  </span>
-                                </span>
-                              </li>
-                              <li className="akasha-mini-cart-item mini_cart_item">
-                                <a href="#" className="remove remove_from_cart_button">
-                                  ×
-                                </a>
-                                <a href="#">
-                                  <img
-                                    src="assets/images/apro1113-600x778.jpg"
-                                    className="attachment-akasha_thumbnail size-akasha_thumbnail"
-                                    alt="img"
-                                    width="600"
-                                    height="778"
-                                  />
-                                  Abstract Sweatshirt&nbsp;
-                                </a>
-                                <span className="quantity">
-                                  1 ×{' '}
-                                  <span className="akasha-Price-amount amount">
-                                    <span className="akasha-Price-currencySymbol">$</span>129.00
-                                  </span>
-                                </span>
-                              </li>
-                              <li className="akasha-mini-cart-item mini_cart_item">
-                                <a href="#" className="remove remove_from_cart_button">
-                                  ×
-                                </a>
-                                <a href="#">
-                                  <img
-                                    src="assets/images/apro201-1-600x778.jpg"
-                                    className="attachment-akasha_thumbnail size-akasha_thumbnail"
-                                    alt="img"
-                                    width="600"
-                                    height="778"
-                                  />
-                                  Mini Dress&nbsp;
-                                </a>
-                                <span className="quantity">
-                                  1 ×{' '}
-                                  <span className="akasha-Price-amount amount">
-                                    <span className="akasha-Price-currencySymbol">$</span>139.00
-                                  </span>
-                                </span>
-                              </li>
-                            </ul>
-                            <p className="akasha-mini-cart__total total">
-                              <strong>Subtotal:</strong>
-                              <span className="akasha-Price-amount amount">
-                                <span className="akasha-Price-currencySymbol">$</span>418.00
-                              </span>
-                            </p>
-                            <p className="akasha-mini-cart__buttons buttons">
-                              <a href="cart.html" className="button akasha-forward">
-                                Viewcart
-                              </a>
-                              <a href="checkout.html" className="button checkout akasha-forward">
-                                Checkout
-                              </a>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                      <CartIcon />
                     </div>
                   </div>
                 </div>
@@ -339,105 +252,12 @@ const Header: React.FC = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className="block-minicart block-dreaming akasha-mini-cart akasha-dropdown">
-                    <div className="shopcart-dropdown block-cart-link" data-akasha="akasha-dropdown">
-                      <a className="block-link link-dropdown" href="#">
-                        <span className="flaticon-bag"></span>
-                        <span className="count">3</span>
-                      </a>
-                    </div>
-                    <div className="widget akasha widget_shopping_cart">
-                      <div className="widget_shopping_cart_content">
-                        <h3 className="minicart-title">
-                          Your Cart<span className="minicart-number-items">3</span>
-                        </h3>
-                        <ul className="akasha-mini-cart cart_list product_list_widget">
-                          <li className="akasha-mini-cart-item mini_cart_item">
-                            <a href="#" className="remove remove_from_cart_button">
-                              ×
-                            </a>
-                            <a href="#">
-                              <img
-                                src="assets/images/apro134-1-600x778.jpg"
-                                className="attachment-akasha_thumbnail size-akasha_thumbnail"
-                                alt="img"
-                                width="600"
-                                height="778"
-                              />
-                              T-shirt with skirt – Pink&nbsp;
-                            </a>
-                            <span className="quantity">
-                              1 ×{' '}
-                              <span className="akasha-Price-amount amount">
-                                <span className="akasha-Price-currencySymbol">$</span>150.00
-                              </span>
-                            </span>
-                          </li>
-                          <li className="akasha-mini-cart-item mini_cart_item">
-                            <a href="#" className="remove remove_from_cart_button">
-                              ×
-                            </a>
-                            <a href="#">
-                              <img
-                                src="assets/images/apro1113-600x778.jpg"
-                                className="attachment-akasha_thumbnail size-akasha_thumbnail"
-                                alt="img"
-                                width="600"
-                                height="778"
-                              />
-                              Abstract Sweatshirt&nbsp;
-                            </a>
-                            <span className="quantity">
-                              1 ×{' '}
-                              <span className="akasha-Price-amount amount">
-                                <span className="akasha-Price-currencySymbol">$</span>129.00
-                              </span>
-                            </span>
-                          </li>
-                          <li className="akasha-mini-cart-item mini_cart_item">
-                            <a href="#" className="remove remove_from_cart_button">
-                              ×
-                            </a>
-                            <a href="#">
-                              <img
-                                src="assets/images/apro201-1-600x778.jpg"
-                                className="attachment-akasha_thumbnail size-akasha_thumbnail"
-                                alt="img"
-                                width="600"
-                                height="778"
-                              />
-                              Mini Dress&nbsp;
-                            </a>
-                            <span className="quantity">
-                              1 ×{' '}
-                              <span className="akasha-Price-amount amount">
-                                <span className="akasha-Price-currencySymbol">$</span>139.00
-                              </span>
-                            </span>
-                          </li>
-                        </ul>
-                        <p className="akasha-mini-cart__total total">
-                          <strong>Subtotal:</strong>
-                          <span className="akasha-Price-amount amount">
-                            <span className="akasha-Price-currencySymbol">$</span>418.00
-                          </span>
-                        </p>
-                        <p className="akasha-mini-cart__buttons buttons">
-                          <a href="cart.html" className="button akasha-forward">
-                            Viewcart
-                          </a>
-                          <a href="checkout.html" className="button checkout akasha-forward">
-                            Checkout
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <CartIcon />
                 </div>
               </div>
             </div>
           </div>
-          <div id="mobile-menu" className={`akasha-menu-clone-wrap ${mobileMenuOpened ? 'open' : ''}`}>
+          <div ref={ref} id="mobile-menu" className={`akasha-menu-clone-wrap ${mobileMenuOpened ? 'open' : ''}`}>
             <div className="akasha-menu-panels-actions-wrap">
               {subMenuAlias ? <a className="akasha-menu-prev-panel" onClick={showSubMenu(null)} /> : null}
               <a
