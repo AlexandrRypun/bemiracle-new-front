@@ -1,9 +1,11 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useCallback, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
-import CartItem from '../cart-item/cart-item';
 import CategoriesList from './components/categories-list';
+import LanguageDropdown from './components/language-dropdown';
+import UserMenuDropdown from './components/user-menu-dropdown';
 import { Category } from '../../types/categories';
+import './styles.css';
 
 enum SubMenus {
   CATEGORIES = 'categories',
@@ -19,10 +21,19 @@ const Header: React.FC = () => {
         { id: 2, name: 'BBB' },
       ]);
     }, 2000);
-  }, []);
+  }, [setCategories]);
 
   const [mobileMenuOpened, setMobileMenuOpened] = useState<boolean>(false);
   const [subMenuAlias, setSubMenuAlias] = useState<SubMenus | null>(null);
+
+  useEffect(() => {
+    document.onclick = function (e) {
+      const menuDiv = document.getElementById('mobile-menu');
+      if (menuDiv && e.clientX > menuDiv.offsetWidth) {
+        setMobileMenuOpened(false);
+      }
+    };
+  }, [setMobileMenuOpened]);
 
   const [subMenuContent, setSubMenuContent] = useState<React.ReactElement | null>(null);
   const getSubMenuContent = useCallback(
@@ -45,6 +56,14 @@ const Header: React.FC = () => {
       }, 200);
     }
   }, [subMenuAlias]);
+
+  const history = useHistory();
+  useEffect(() => {
+    setMobileMenuOpened(false);
+    setSubMenuAlias(null);
+  }, [history.location.key]);
+
+  const showSubMenu = useCallback((subMenuAlias: SubMenus | null) => (): void => setSubMenuAlias(subMenuAlias), []);
 
   return (
     <header id="header" className="header style-02 header-dark">
@@ -72,13 +91,12 @@ const Header: React.FC = () => {
                         <Link to="/">Home</Link>
                       </li>
                       <li
-                        id="menu-item-228"
-                        className="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-228 parent parent-megamenu item-megamenu menu-item-has-children"
+                        className="menu-item"
+                        onMouseEnter={showSubMenu(SubMenus.CATEGORIES)}
+                        onMouseLeave={showSubMenu(null)}
                       >
-                        <a className="akasha-menu-item-title" title="Shop" href="/">
-                          Shop
-                        </a>
-                        <CategoriesList categories={categories} />
+                        <span className="akasha-menu-item-title">Shop</span>
+                        {subMenuAlias === SubMenus.CATEGORIES ? <CategoriesList categories={categories} /> : null}
                       </li>
                       <li
                         id="menu-item-229"
@@ -100,22 +118,10 @@ const Header: React.FC = () => {
                     <div className="meta-dreaming">
                       <ul className="wpml-menu">
                         <li className="menu-item akasha-dropdown block-language">
-                          <a href="#" data-akasha="akasha-dropdown">
-                            <img src={require('../../assets/images/en.png')} alt="en" />
-                            English
-                          </a>
-                          <span className="toggle-submenu"></span>
-                          <ul className="sub-menu">
-                            <li className="menu-item">
-                              <a href="#">
-                                <img src={require('../../assets/images/it.png')} alt="it" />
-                                Italiano
-                              </a>
-                            </li>
-                          </ul>
+                          <LanguageDropdown />
                         </li>
                       </ul>
-                      <div className="header-search akasha-dropdown">
+                      <div className="header-search akasha-dropdown hidden">
                         <div className="header-search-inner" data-akasha="akasha-dropdown">
                           <a href="#" className="link-dropdown block-link">
                             <span className="flaticon-magnifying-glass-1"></span>
@@ -145,25 +151,9 @@ const Header: React.FC = () => {
                           </form>
                         </div>
                       </div>
-                      <div className="akasha-dropdown-close">x</div>
+                      <div className="akasha-dropdown-close hidden">x</div>
                       <div className="menu-item block-user block-dreaming akasha-dropdown">
-                        <a className="block-link" href="#">
-                          <span className="flaticon-profile"></span>
-                        </a>
-                        <ul className="sub-menu">
-                          <li className="menu-item akasha-MyAccount-navigation-link akasha-MyAccount-navigation-link--orders">
-                            <a href="#">Orders</a>
-                          </li>
-                          <li className="menu-item akasha-MyAccount-navigation-link akasha-MyAccount-navigation-link--edit-adchair">
-                            <a href="#">Addresses</a>
-                          </li>
-                          <li className="menu-item akasha-MyAccount-navigation-link akasha-MyAccount-navigation-link--edit-account">
-                            <a href="#">Account details</a>
-                          </li>
-                          <li className="menu-item akasha-MyAccount-navigation-link akasha-MyAccount-navigation-link--customer-logout">
-                            <a href="#">Logout</a>
-                          </li>
-                        </ul>
+                        <UserMenuDropdown />
                       </div>
                       <div className="block-minicart block-dreaming akasha-mini-cart akasha-dropdown">
                         <div className="shopcart-dropdown block-cart-link" data-akasha="akasha-dropdown">
@@ -271,13 +261,13 @@ const Header: React.FC = () => {
           <div className="header-mobile">
             <div className="header-mobile-left">
               <div className="block-menu-bar">
-                <a className="menu-bar menu-toggle" href="#" onClick={() => setMobileMenuOpened(true)}>
+                <span className="menu-bar menu-toggle" onClick={() => setMobileMenuOpened(true)}>
                   <span />
                   <span />
                   <span />
-                </a>
+                </span>
               </div>
-              <div className="header-search akasha-dropdown">
+              <div className="header-search akasha-dropdown hidden">
                 <div className="header-search-inner" data-akasha="akasha-dropdown">
                   <a href="#" className="link-dropdown block-link">
                     <span className="flaticon-magnifying-glass-1"></span>
@@ -447,9 +437,9 @@ const Header: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className={`akasha-menu-clone-wrap ${mobileMenuOpened ? 'open' : ''}`}>
+          <div id="mobile-menu" className={`akasha-menu-clone-wrap ${mobileMenuOpened ? 'open' : ''}`}>
             <div className="akasha-menu-panels-actions-wrap">
-              {subMenuAlias ? <a className="akasha-menu-prev-panel" onClick={() => setSubMenuAlias(null)} /> : null}
+              {subMenuAlias ? <a className="akasha-menu-prev-panel" onClick={showSubMenu(null)} /> : null}
               <a
                 className="akasha-menu-close-btn akasha-menu-close-panels"
                 href="#"
@@ -462,13 +452,13 @@ const Header: React.FC = () => {
               <div className="akasha-menu-panel akasha-menu-panel-main">
                 <ul>
                   <li>
-                    <Link to="/">Home</Link>
+                    <Link to="">Home</Link>
                   </li>
                   <li>
-                    <a className="akasha-menu-next-panel" onClick={() => setSubMenuAlias(SubMenus.CATEGORIES)} />
-                    <a className="akasha-menu-item-title" title="Shop" href="/">
+                    <a className="akasha-menu-next-panel" onClick={showSubMenu(SubMenus.CATEGORIES)} />
+                    <span className="akasha-menu-item-title" onClick={showSubMenu(SubMenus.CATEGORIES)}>
                       Shop
-                    </a>
+                    </span>
                   </li>
                   <li>
                     <Link to="/delivery">Delivery</Link>

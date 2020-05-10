@@ -1152,7 +1152,7 @@ article.sticky .post-title a::before {
 	max-width: 81px;
 	margin-right: 15px;
 	border: 1px solid #dbdbdb;
-	
+
 }
 .product_list_widget li > a {
 	display: block;
@@ -1959,9 +1959,10 @@ th, td {
 	left: auto;
 }
 .block-language:hover > .sub-menu, .menu-item:hover .wcml-dropdown .wcml-cs-submenu {
-	opacity: 1;
-	visibility: visible;
-	margin-top: 0 !important;
+
+	/*opacity: 1;*/
+	/*visibility: visible;*/
+	/*margin-top: 0 !important;*/
 }
 .block-language > .sub-menu .menu-item, .wcml-dropdown .wcml-cs-submenu li {
 	padding: 0 12px;
@@ -2233,12 +2234,6 @@ th, td {
 	position: absolute;
 	min-width: 245px;
 	background-color: #ffffff;
-	opacity: 0;
-	visibility: hidden;
-}
-.box-header-nav .main-menu .menu-item:hover > .submenu {
-	opacity: 1;
-	visibility: visible;
 }
 .box-header-nav .main-menu > .menu-item > .submenu {
 	top: 100%;
@@ -2539,7 +2534,7 @@ th, td {
 }
 .live-search-widget.widget .akasha-live-search-form {
 	border-width: 1px;
-	
+
 }
 .live-search-widget.widget .akasha-live-search-form .txt-livesearch {
 	height: 42px;
@@ -3326,7 +3321,7 @@ th, td {
 		position: absolute;
 		top: 0;
 		left: calc(100% + 12px);
-		
+
 		background-color: #fff;
 		z-index: 9;
 		min-width: 257px;
@@ -3354,7 +3349,7 @@ th, td {
 		left: 0;
 		right: 0;
 		bottom: 0;
-		
+
 		border: 2px solid transparent;
 		pointer-events: none;
 	}
@@ -5202,7 +5197,7 @@ body #widget-area .select2-container--default .select2-selection--single {
 	height: 43px;
 	border: 1px solid;
 	margin: 0 6px 6px 0;
-	
+
 	background-color: #fff;
 }
 .page-links > span:not(.page-links-title),
@@ -6015,7 +6010,7 @@ body.admin-bar #yith-quick-view-modal {
 	background-color: #fa8f47;
 	color: #fff;
 	border: none;
-	
+
 	top: 50px;
 	left: 40px;
 	padding: 10px 25px;
@@ -6048,7 +6043,7 @@ body.admin-bar #yith-quick-view-modal {
 	font-family: 'FontAwesome', sans-serif;
 	content: '\f0ec';
 	font-size: 16px;
-	
+
 }
 .compare.added::before {
 	font-family: 'Flaticon', sans-serif;
@@ -8195,7 +8190,7 @@ p.stars a:hover ~ a:before, p.stars.selected:not(:hover) a.active ~ a:before {
 	padding: 15px 20px 35px 20px;
 	text-align: center;
 	display: block;
-	
+
 	border: 1px solid #e2e2e2;
 }
 .categories-product-dreaming .subcat figure {
@@ -8238,7 +8233,7 @@ p.stars a:hover ~ a:before, p.stars.selected:not(:hover) a.active ~ a:before {
 	height: 38px;
 	line-height: 36px;
 	border: 1px solid #d9d9d9;
-	
+
 	background-color: #fff;
 	font-size: 11px;
 	letter-spacing: 0.2em;
@@ -8263,7 +8258,7 @@ p.stars a:hover ~ a:before, p.stars.selected:not(:hover) a.active ~ a:before {
 	top: 25%;
 	z-index: 3;
 	border: 1px solid #dadada;
-	
+
 	background-color: #fff;
 	opacity: 0;
 	visibility: hidden;
@@ -8308,7 +8303,7 @@ p.stars a:hover ~ a:before, p.stars.selected:not(:hover) a.active ~ a:before {
 }
 .recently-reviewed-product .product img {
 	border: 1px solid #e2e2e2;
-	
+
 }
 @media (max-width: 1199px) {
 	.categories-product-dreaming .slick-arrow {
@@ -8384,7 +8379,7 @@ p.stars a:hover ~ a:before, p.stars.selected:not(:hover) a.active ~ a:before {
 body.akasha-cart .cart-empty {
 	font-size: 38px;
 	line-height: 1.2;
-	
+
 	background-color: #fff;
 	padding: 90px 15px 25px;
 	text-align: center;
@@ -8393,7 +8388,7 @@ body.akasha-cart .cart-empty {
 body.akasha-cart .return-to-shop {
 	text-align: center;
 	padding: 0 15px 90px;
-	
+
 	background-color: #fff;
 }
 body.akasha-cart .return-to-shop a {
@@ -9738,7 +9733,7 @@ form.akasha-form-login .lost_password a::before {
 .akasha-ResetPassword .form-row .akasha-Button {
 	height: 54px;
 	line-height: 54px;
-	
+
 	min-width: 150px;
 }
 .akasha-ResetPassword .form-row .akasha-Button:hover {
@@ -9779,7 +9774,7 @@ form.akasha-form-login .lost_password a::before {
 	#customer_login .form-row:not(.form-row-wide) {
 		margin-bottom: 20px;
 	}
-	
+
 }
 @media (max-width: 479px) {
 	#customer_login .akasha-form__label {
@@ -9788,7 +9783,7 @@ form.akasha-form-login .lost_password a::before {
 	#customer_login .akasha-Button {
 		float: none;
 	}
-	
+
 }
 /* ==========================================================================
 8.4 WISHLIST PAGE
@@ -10769,7 +10764,7 @@ body.error404 .header {
 .akasha-banner.style-12 .button:hover::before {
 	-webkit-animation: underline-link .8s cubic-bezier(.58, .3, .005, 1) 0s 1;
 	animation: underline-link .8s cubic-bezier(.58, .3, .005, 1) 0s 1;
-	
+
 }
 /*.akasha-banner.style-13*/
 .akasha-banner.style-13 .banner-inner {
@@ -13055,14 +13050,14 @@ ul.products {
 	padding: 15px 15px 15px 28px;
 	text-transform: uppercase;
 	background-color: #fa8f47;
-	
+
 }
 .akasha-verticalmenu.block-nav-category .block-content {
 	background-color: #fff;
 	text-align: left;
 	border: 3px solid #fa8f47;
 	border-top: none;
-	
+
 }
 .akasha-verticalmenu.block-nav-category.absolute-menu:not(.has-open) .block-content {
 	visibility: hidden;
@@ -13189,7 +13184,7 @@ body .az_toggle_default .az_toggle_content p:last-child {
 .akasha-pricing .pricing-inner {
 	background-color: #fff;
 	text-align: center;
-	
+
 	padding-bottom: 35px;
 	-webkit-transition: transform 0.4s ease 0s;
 	-moz-transition: transform 0.4s ease 0s;
@@ -15549,4 +15544,12 @@ body .akasha-mapper .text__area {
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+
+.hidden {
+	display: none!important;
+}
+
+li {
+	list-style: none;
 }

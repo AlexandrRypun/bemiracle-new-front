@@ -1,0 +1,16 @@
+.menu-bar.menu-toggle {
+    color: #000000;
+}
+.akasha-menu-panel > ul > li > span.akasha-menu-item-title {
+    display: inline-block;
+    line-height: 50px;
+}
+.box-header-nav .main-menu > .menu-item > span.akasha-menu-item-title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 60px;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    color: #000000;
+}

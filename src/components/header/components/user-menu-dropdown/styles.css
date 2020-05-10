@@ -1,0 +1,22 @@
+span.user-menu {
+    display: block;
+    font-size: 23px;
+    width: 40px;
+    line-height: 35px;
+    height: 35px;
+    text-align: center;
+    position: relative;
+    color: #000000;
+    cursor: pointer;
+}
+span.user-menu:hover,
+ul.user-menu-content li span:hover {
+    color: #fa8f47;
+}
+ul.user-menu-content li span {
+    color: #777777;
+    display: block;
+    font-size: 14px;
+    line-height: 32px;
+    cursor: pointer;
+}
