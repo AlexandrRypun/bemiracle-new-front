@@ -1,0 +1,19 @@
+.mini_cart_item .cart-icon-item-remove {
+    right: 30px;
+    font-size: 34px;
+    position: absolute;
+    top: 0;
+    width: auto !important;
+    cursor: pointer;
+}
+
+.mini_cart_item .cart-icon-item-remove:hover {
+    color: #fa8f47;
+}
+
+.mini_cart_item span.quantity {
+    font-size: 14px;
+    line-height: 22px;
+    color: #868686;
+    font-weight: 500;
+}

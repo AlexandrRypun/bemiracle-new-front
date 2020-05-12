@@ -1022,12 +1022,6 @@ article.sticky .post-title a::before {
 .widget_shopping_cart .product_list_widget li a:not(.remove):not(:hover) {
 	color: #000;
 }
-.widget_shopping_cart .product_list_widget li .quantity {
-	font-size: 14px;
-	line-height: 22px;
-	color: #868686;
-	font-weight: 500;
-}
 .widget_shopping_cart .product_list_widget li .remove_from_cart_button {
 	position: absolute;
 	top: 0;
