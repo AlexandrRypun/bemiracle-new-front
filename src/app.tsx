@@ -6,6 +6,7 @@ import Footer from './components/footer';
 import HomePage from './pages/homepage/homepage';
 import AboutUs from './pages/about-us/about-us';
 import Category from './pages/category/category';
+import BrowserProvider from './contexts/browser';
 
 import './assets/css/bootstrap.min.css';
 import './assets/css/animate.css';
@@ -21,15 +22,17 @@ import './assets/css/dreaming-attribute.css';
 import './assets/css/style.css';
 
 const App: React.FC = () => (
-  <>
-    <Header />
-    <Switch>
-      <Route path="/" exact component={HomePage} />
-      <Route path="/about-us" component={AboutUs} />
-      <Route path="/category/:categoryId" component={Category} />
-    </Switch>
-    <Footer />
-  </>
+  <BrowserProvider>
+    <>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/about-us" component={AboutUs} />
+        <Route path="/category/:categoryId" component={Category} />
+      </Switch>
+      <Footer />
+    </>
+  </BrowserProvider>
 );
 
 export default App;

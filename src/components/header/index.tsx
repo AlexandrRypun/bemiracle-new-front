@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useMemo, useLayoutEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useLayoutEffect, useRef, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import CategoriesList from './components/categories-list';
@@ -8,15 +8,14 @@ import CartIcon from './components/cart-icon';
 import { Category } from '../../types/categories';
 import './styles.css';
 import useDetectClick from '../../hooks/use-detect-click';
+import { BrowserContext } from '../../contexts/browser';
 
 enum SubMenus {
   CATEGORIES = 'categories',
 }
 
 const Header: React.FC = () => {
-  const [domReady, setDomReady] = useState<boolean>(false);
-  useLayoutEffect(() => setDomReady(true), []);
-  const { innerWidth } = window;
+  const { isMobile } = useContext(BrowserContext);
   const [categories, setCategories] = useState<Category[]>([]);
   useEffect(() => {
     setTimeout(() => {
@@ -73,7 +72,7 @@ const Header: React.FC = () => {
 
   return (
     <header id="header" className="header style-02 header-dark">
-      {innerWidth > 1024 ? (
+      {!isMobile ? (
         <div className="header-wrap-stick">
           <div className="header-position">
             <div className="header-middle">
