@@ -1,0 +1,33 @@
+.about-us {
+    overflow: hidden;
+}
+.about-us .image-block {
+    float: left;
+    width: 45%;
+    position: relative;
+}
+.about-us .text-block {
+    float: left;
+    width: 55%;
+    padding: 65px 0 0 60px;
+}
+
+.about-us .text-block .title {
+    font-size: 26px;
+    font-weight: 600;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 30px;
+    margin-top: 0;
+    border-left: 2px solid #fa8f47;
+}
+@media (max-width: 991px) {
+    .about-us .image-block {
+        width: auto;
+        display: table;
+    }
+    .about-us .text-block {
+        padding: 30px 0 0 0;
+        width: 100%;
+    }
+}

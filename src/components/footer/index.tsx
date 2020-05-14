@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Index: React.FC = () => (
   <footer id="footer" className="footer style-01">
@@ -7,7 +8,7 @@ const Index: React.FC = () => (
         <div className="row">
           <div className="col-md-6">
             <p>
-              © Copyright 2020 <a href="#">Bemiracle</a>. All Rights Reserved.
+              © Copyright 2020 <Link to="/">Bemiracle</Link>. All Rights Reserved.
             </p>
           </div>
         </div>

@@ -25,11 +25,13 @@ const App: React.FC = () => (
   <BrowserProvider>
     <>
       <Header />
-      <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/about-us" component={AboutUs} />
-        <Route path="/category/:categoryId" component={Category} />
-      </Switch>
+      <div className="main-container container">
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/about-us" component={AboutUs} />
+          <Route path="/category/:categoryId" component={Category} />
+        </Switch>
+      </div>
       <Footer />
     </>
   </BrowserProvider>

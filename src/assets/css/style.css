@@ -4467,12 +4467,8 @@ a.backtotop:hover::before {
 6.1 BANNER AND TITLE PAGE
 ========================================================================== */
 .main-container {
-	padding-top: 70px;
-	padding-bottom: 70px;
-}
-body.single .main-container {
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 .banner-wrapper-inner {
 	text-align: center;
@@ -12297,59 +12293,6 @@ footer .akasha-listitem.style-04 li {
 .akasha-popupvideo .button:hover {
 	background-color: #fa8f47;
 }
-.akasha-popupvideo .icon {
-	float: left;
-	width: 45%;
-	position: relative;
-}
-.akasha-popupvideo .icon .product-video-button {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	-moz-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	-o-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-}
-.akasha-popupvideo .icon .product-video-button a {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	-moz-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	-o-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);;
-	z-index: 1;
-	width: 70px;
-	height: 70px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
-	background-color: #fff;
-	-webkit-box-shadow: 6px 5px 30px rgba(0, 0, 0, 0.12);
-	-moz-box-shadow: 6px 5px 30px rgba(0, 0, 0, 0.12);
-	box-shadow: 6px 5px 30px rgba(0, 0, 0, 0.12);
-}
-.akasha-popupvideo .icon .product-video-button a::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	width: 0;
-	height: 0;
-	margin: auto;
-	display: block;
-	border-width: 9px 0 9px 12px;
-	border-style: solid;
-	border-color: transparent transparent transparent #fa8f47;
-}
 .videobox_animation {
 	-webkit-animation-play-state: running;
 	-moz-animation-play-state: running;
@@ -12468,16 +12411,6 @@ footer .akasha-listitem.style-04 li {
 	}
 	.akasha-popupvideo .popupvideo-wrap {
 		padding: 20px 0 0 40px;
-	}
-}
-@media (max-width: 991px) {
-	.akasha-popupvideo .icon {
-		width: auto;
-		display: table;
-	}
-	.akasha-popupvideo .popupvideo-wrap {
-		padding: 30px 0 0 0;
-		width: 100%;
 	}
 }
 /*===============================================================
@@ -15501,9 +15434,6 @@ body .akasha-mapper .text__area {
 @media (max-width: 767px) {
 	.footer-device-mobile {
 		display: block;
-	}
-	body {
-		margin-bottom: 56px;
 	}
 }
 .container-video {
