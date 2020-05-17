@@ -10,7 +10,7 @@ type Props = {
 };
 const ProductTeaser: React.FC<Props> = ({ product }) => {
   return (
-    <li className="product-teaser col-bg-3">
+    <li className="product-teaser col-bg-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-ts-6">
       <div className="product-teaser-inner">
         <div className="product-img">
           <Link to={`/products/${product.id}`}>

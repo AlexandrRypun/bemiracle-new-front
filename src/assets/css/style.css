@@ -1789,7 +1789,7 @@ th, td {
 		margin-top: 25px;
 	}
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
 	.owl-slick .slick-arrow {
 		display: none !important;
 	}
@@ -2033,7 +2033,7 @@ th, td {
 .akasha .wcml-dropdown.product {
 	margin: 0;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
 	.block-language.open > .sub-menu {
 		opacity: 1;
 		visibility: visible;
@@ -2084,7 +2084,7 @@ th, td {
 .block-menu-bar .menu-bar:hover span {
 	background-color: #fa8f47;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
 	.block-menu-bar {
 		display: inline-block;
 	}
@@ -2297,7 +2297,7 @@ th, td {
 		padding: 0 13px;
 	}
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
 	.box-header-nav .main-menu {
 		opacity: 0;
 		visibility: hidden;
@@ -2980,7 +2980,7 @@ th, td {
 		right: 22px;
 	}
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
 	.block-user.open .sub-menu {
 		margin-top: 15px;
 		opacity: 1;
@@ -3278,7 +3278,7 @@ th, td {
 	-o-transform: rotate(-90deg);
 	transform: rotate(-90deg);
 }
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
 	.vertical-menu.default .menu-item.parent-megamenu {
 		position: static;
 	}
@@ -3335,7 +3335,7 @@ th, td {
 		float: right;
 	}
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
 	.vertical-menu.default [class^="az_col-"],
 	.vertical-menu.default [class*=" az_col-"] {
 		width: 100% !important;
@@ -3635,12 +3635,7 @@ th, td {
 	-o-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
-@media (min-width: 1025px) {
-	.header-mobile {
-		display: none;
-	}
-}
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
 	.header-top,
 	.header-middle,
 	.header-wrap-stick {
@@ -11779,7 +11774,7 @@ footer .akasha-listitem.style-04 li {
 		margin-bottom: 20px;
 	}
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
 	.akasha-team .thumb-avatar {
 		margin-bottom: 0;
 	}
@@ -15306,7 +15301,7 @@ body .akasha-mapper .text__area {
 	font-size: 16px;
 	margin: -3px 0 5px;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
 	.akasha-mapper .akasha-pin .akasha-popup {
 		display: none !important;
 	}
