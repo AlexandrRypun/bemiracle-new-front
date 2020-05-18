@@ -9,7 +9,7 @@ type Args = {
 const useRequest = ({ endpoint }: Args) => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
-  const getData = useCallback(async <T>(params?: AnyObject): Promise<T | null> => {
+  const getData = useCallback(async <T>(params?: AnyObject): Promise<T> => {
     setIsFetching(true);
     let data = null;
     try {

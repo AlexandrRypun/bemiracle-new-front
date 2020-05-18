@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Product } from '../../../types/products';
-
+import { IMG_SIZE, Product } from '../../../types/products';
+import { getTranslation } from '../../../utils/common';
+import { getMainImgSrc } from '../../../utils/products';
 import './styles.css';
 
 type Props = {
@@ -14,7 +15,13 @@ const ProductTeaser: React.FC<Props> = ({ product }) => {
       <div className="product-teaser-inner">
         <div className="product-img">
           <Link to={`/products/${product.id}`}>
-            <img className="img-responsive" src={product.img} alt={product.name} width="600" height="778" />
+            <img
+              className="img-responsive"
+              src={getMainImgSrc(product, IMG_SIZE.TEASER)}
+              alt={getTranslation('name', product)}
+              width="600"
+              height="778"
+            />
           </Link>
           <div className="flash">
             <span className="onnew">
@@ -29,7 +36,7 @@ const ProductTeaser: React.FC<Props> = ({ product }) => {
         </div>
         <div className="product-data">
           <h3 className="product-name">
-            <Link to={`/products/${product.id}`}>{product.name}</Link>
+            <Link to={`/products/${product.id}`}>{getTranslation('name', product)}</Link>
           </h3>
           <span className="price">${product.price}</span>
         </div>

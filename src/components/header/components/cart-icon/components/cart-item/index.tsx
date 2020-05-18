@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CartProduct } from '../../../../../../types/products';
 
+import { CartProduct, IMG_SIZE } from '../../../../../../types/products';
+import { getTranslation } from '../../../../../../utils/common';
+import { getMainImgSrc } from '../../../../../../utils/products';
 import './styles.css';
 
 interface Props extends React.ComponentProps<any> {
@@ -12,8 +14,13 @@ const CartItem: React.FC<Props> = ({ product }) => {
     <li className="mini_cart_item">
       <span className="cart-icon-item-remove">×</span>
       <Link to={`/products/${product.id}`}>
-        <img src={product.img} alt={product.name} width="600" height="778" />
-        {product.name}
+        <img
+          src={getMainImgSrc(product, IMG_SIZE.THUMBNAIL)}
+          alt={getTranslation('name', product)}
+          width="600"
+          height="778"
+        />
+        {getTranslation('name', product)}
       </Link>
       <span className="quantity">
         {product.quantity} × <span>$</span>
