@@ -9,14 +9,16 @@ type Args = {
 const useRequest = ({ endpoint }: Args) => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
-  const getData = useCallback(async <T>(params?: AnyObject): Promise<T> => {
+  const getData = useCallback(async <T>(params?: AnyObject, onError?: (e: Error) => void): Promise<T> => {
     setIsFetching(true);
     let data = null;
     try {
       const response = await axios.get(endpoint, { params });
       data = response.data;
     } catch (e) {
-      console.error(e);
+      if (onError) {
+        onError(e);
+      }
     } finally {
       setIsFetching(false);
     }

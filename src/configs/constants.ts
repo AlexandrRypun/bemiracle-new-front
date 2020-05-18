@@ -1,5 +1,5 @@
 export default {
   products: {
-    perPage: 4,
+    perPage: [12, 24, 48],
   },
 };
