@@ -1,9 +1,12 @@
 import axios from 'axios';
 
-axios.interceptors.request.use(
-  config => {
-    config.baseURL = `${process.env.REACT_APP_API_DOMAIN}/`;
+const apiClient = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+  responseType: 'json',
+});
 
+apiClient.interceptors.request.use(
+  config => {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
@@ -13,4 +16,4 @@ axios.interceptors.request.use(
   error => Promise.reject(error),
 );
 
-export default axios;
+export default apiClient;
