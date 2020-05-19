@@ -1,0 +1,129 @@
+.product-view {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.product-view .product-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+.product-view .product-short-description {
+    margin-bottom: 18px;
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 24px;
+    color: #333;
+}
+.product-view input.product-qty {
+    color: #000;
+    width: 50px;
+    height: 46px;
+    line-height: 44px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 5px;
+    text-align: center;
+    border: none;
+    display: inline-block;
+    float: left;
+    border-radius: 0;
+}
+.product-view .qty-arrow {
+    line-height: 46px;
+    height: 42px;
+    display: inline-block;
+    right: 0;
+    width: 30px;
+    float: left;
+    cursor: pointer;
+    color: #000000;
+}
+.product-view .qty-arrow:hover {
+    color: #fa8f47;
+}
+.product-view .qty-minus::before {
+    font-family: 'FontAwesome', sans-serif;
+    font-size: 15px;
+    content: "\f0d7";
+}
+.product-view .qty-plus::before {
+    font-family: 'FontAwesome', sans-serif;
+    font-size: 15px;
+    content: "\f0d8";
+}
+.product-view .product-add-to-cart {
+    vertical-align: middle;
+    height: 46px;
+    line-height: 46px;
+    min-width: 180px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 0 10px;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    text-transform: uppercase;
+    border-radius: 30px;
+}
+.product-view .product-add-to-cart:hover {
+    background-color: #fa8f47;
+    cursor: pointer;
+}
+.product-view .product-add-to-cart.disabled {
+    opacity: 0.65;
+    text-decoration: line-through;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.product-view .product-category {
+    display: block;
+    font-weight: 500;
+}
+.product-view .product-data-tabs {
+    position: relative;
+    z-index: 1;
+    margin-top: 30px;
+}
+.product-view .product-data-tabs .tabs-list {
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+}
+.product-view .product-data-tabs .tab-title {
+    display: inline-block;
+    padding: 0 25px;
+    vertical-align: bottom;
+}
+.product-view .product-data-tabs .tab-title span {
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #868686;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    transition: color 0.25s, border-color 0.25s, background-color 0.25s, opacity 0.25s, width 0.25s ease 0s;
+}
+.product-view .product-data-tabs .tab-title span:before {
+    content: '';
+    position: absolute;
+    border-bottom: 2px solid #fa8f47;
+    width: 100%;
+    bottom: 0;
+    transition: all 0.5s;
+    transform: scale(0);
+}
+.product-view .product-data-tabs .tab-title.active span::before,
+.product-view .product-data-tabs .tab-title span:hover::before {
+    transform: scaleX(1);
+}
+.product-view .product-data-tabs .tab-title span:hover,
+.product-view .product-data-tabs .tab-title.active span {
+    color: #000;
+    cursor: pointer;
+}

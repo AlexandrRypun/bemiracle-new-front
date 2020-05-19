@@ -6,6 +6,7 @@ import Footer from './components/footer';
 import HomePage from './pages/homepage/homepage';
 import AboutUs from './pages/about-us/about-us';
 import Category from './pages/category/category';
+import Product from './pages/product';
 import BrowserProvider from './contexts/browser';
 
 import './assets/css/bootstrap.min.css';
@@ -30,6 +31,7 @@ const App: React.FC = () => (
           <Route path="/" exact component={HomePage} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/category/:categoryId" component={Category} />
+          <Route path="/products/:productId" component={Product} />
         </Switch>
       </div>
       <Footer />
