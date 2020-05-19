@@ -6,8 +6,6 @@
 .slide-dropdown > .slide-dropdown-content {
     position: absolute;
     top: 100%;
-    left: auto;
-    right: 0;
     min-width: 150px;
     background-color: #fff;
     color: #777777;
@@ -26,6 +24,12 @@
     visibility: hidden;
     margin-top: 15px;
     padding: 15px 0;
+}
+.slide-dropdown > .slide-dropdown-content.left {
+    right: 0;
+}
+.slide-dropdown > .slide-dropdown-content.right {
+    left: 0;
 }
 
 .slide-dropdown > .slide-dropdown-content.show {

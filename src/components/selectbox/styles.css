@@ -5,6 +5,7 @@
     line-height: 44px;
     padding: 0 42px 0 22px;
     height: 46px;
+    background: url(../../assets/images/select-arrow.png) center right no-repeat;
 }
 
 @media (max-width: 480px) {

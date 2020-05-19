@@ -12,13 +12,13 @@
     color: #fa8f47;
     cursor: pointer;
 }
-.block-language span.language.selected::after {
+.block-language span.language.withArrow::after {
     display: inline-block;
     vertical-align: top;
     font-family: 'FontAwesome', sans-serif;
     content: '\f107';
     margin-left: 2px;
 }
-.block-language span.language img {
+.block-language span.language svg {
     margin: -2px 3px 0 0;
 }

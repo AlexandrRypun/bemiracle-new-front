@@ -1548,10 +1548,7 @@ textarea {
 	width: 100%;
 	border-radius: 4px;
 }
-select {
-	padding: 0 33px 0 15px;
-	background: url(../images/select-arrow.png) center right no-repeat;
-}
+
 button, input[type="submit"], input[type="button"], .fami-btn {
 	display: inline-block;
 	height: 40px;
@@ -3559,11 +3556,7 @@ th, td {
 	display: table;
 	width: 100%;
 }
-.header-mobile > * {
-	display: table-cell;
-	vertical-align: middle;
-	width: 33.33333333%;
-}
+
 .header-mobile-mid {
 	text-align: center;
 }
@@ -3668,9 +3661,6 @@ th, td {
 	}
 }
 @media (max-width: 767px) {
-	.header-mobile .wpml-menu {
-		display: none;
-	}
 	.header-mobile {
 		/*table-layout: fixed;*/
 	}
@@ -3678,11 +3668,7 @@ th, td {
 	.header-mobile .header-mobile-right {
 		width: calc(50% - 65px);
 	}
-	.header-mobile .header-logo {
-		max-width: 130px;
-		display: inline-block;
-		width: 100% !important;
-	}
+
 }
 /* ==========================================================================
 4.0 FOOTER THEME

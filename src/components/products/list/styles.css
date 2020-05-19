@@ -7,4 +7,6 @@
     padding-left: 0;
     margin-right: -15px;
     margin-left: -15px;
+    display: flex;
+    flex-wrap: wrap;
 }

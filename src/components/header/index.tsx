@@ -1,14 +1,15 @@
-import React, { useState, useCallback, useEffect, useLayoutEffect, useRef, useContext } from 'react';
+import React, { useState, useCallback, useEffect, useRef, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
+import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import CategoriesList from './components/categories-list';
 import LanguageDropdown from './components/language-dropdown';
 import UserMenuDropdown from './components/user-menu-dropdown';
 import CartIcon from './components/cart-icon';
 import { Category } from '../../types/categories';
-import './styles.css';
 import useDetectClick from '../../hooks/use-detect-click';
 import { BrowserContext } from '../../contexts/browser';
+import './styles.css';
 
 enum SubMenus {
   CATEGORIES = 'categories',
@@ -81,7 +82,7 @@ const Header: React.FC = () => {
                 <div className="header-logo-nav">
                   <div className="header-logo">
                     <Link to="/">
-                      <img alt="Akasha" src={require('../../assets/images/logo.png')} className="logo" />
+                      <Logo />
                     </Link>
                   </div>
                   <div className="box-header-nav menu-nocenter">
@@ -207,25 +208,14 @@ const Header: React.FC = () => {
               </div>
               <ul className="wpml-menu">
                 <li className="menu-item akasha-dropdown block-language">
-                  <a href="#" data-akasha="akasha-dropdown">
-                    <img src={require('../../assets/images/en.png')} alt="en" />
-                    English
-                  </a>
-                  <ul className="sub-menu">
-                    <li className="menu-item">
-                      <a href="#">
-                        <img src={require('../../assets/images/it.png')} alt="it" />
-                        Italiano
-                      </a>
-                    </li>
-                  </ul>
+                  <LanguageDropdown />
                 </li>
               </ul>
             </div>
             <div className="header-mobile-mid">
               <div className="header-logo">
                 <Link to="/">
-                  <img alt="Akasha" src={require('../../assets/images/logo.png')} className="logo" />
+                  <Logo />
                 </Link>
               </div>
             </div>

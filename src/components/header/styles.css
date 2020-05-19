@@ -14,3 +14,16 @@
     display: inline-block;
     color: #000000;
 }
+.header-logo svg {
+    vertical-align: bottom;
+}
+.header-mobile .header-logo {
+    max-width: 144px;
+    display: inline-block;
+    width: 100% !important;
+}
+.header-mobile > * {
+    display: table-cell;
+    vertical-align: middle;
+    width: 33.33333333%;
+}
