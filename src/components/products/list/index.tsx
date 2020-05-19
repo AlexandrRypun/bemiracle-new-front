@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { Product } from '../../../types/products';
 import ProductTeaser from '../teaser';
@@ -8,17 +8,29 @@ import { GetManyResponse } from '../../../types/common';
 import constants from '../../../configs/constants';
 import SelectBox from '../../selectbox';
 
+import './styles.css';
+
 type Props = {
-  filters: Partial<Product>;
+  params: Partial<Product>;
 };
 type Products = {
   products: Product[];
   total: number;
 };
-const ProductsList: React.FC<Props> = ({ filters }) => {
+type Filters = {
+  page: number;
+  perPage: number;
+  sortBy: string;
+};
+const initialFilters = {
+  page: 1,
+  perPage: constants.products.perPage[0],
+  sortBy: '-id',
+};
+
+const ProductsList: React.FC<Props> = ({ params }) => {
   const [products, setProducts] = useState<Products>({ products: [], total: 0 });
-  const [perPage, setPerPage] = useState<number>(constants.products.perPage[0]);
-  const [page, setPage] = useState<number>(1);
+  const [filters, setFilters] = useState<Filters>(initialFilters);
   const perPageOptions = useMemo(
     () =>
       constants.products.perPage.map(count => ({
@@ -27,14 +39,36 @@ const ProductsList: React.FC<Props> = ({ filters }) => {
       })),
     [constants.products.perPage],
   );
+  const sortingOptions = useMemo(
+    () => [
+      {
+        value: '-id',
+        label: `Sort by date: latest to earliest`,
+      },
+      {
+        value: 'id',
+        label: `Sort by date: earliest to latest`,
+      },
+      {
+        value: '-price',
+        label: `Sort by price: high to low`,
+      },
+      {
+        value: 'price',
+        label: `Sort by price: low to high`,
+      },
+    ],
+    [],
+  );
   const { isFetching, getData } = useRequest({ endpoint: 'products' });
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       const response = await getData<GetManyResponse<Product>>(
         {
-          ...filters,
-          take: perPage,
-          skip: (page - 1) * perPage,
+          ...params,
+          take: filters.perPage,
+          skip: (filters.page - 1) * filters.perPage,
+          orderBy: filters.sortBy,
         },
         error => {
           console.error(error);
@@ -47,42 +81,37 @@ const ProductsList: React.FC<Props> = ({ filters }) => {
       });
     };
     fetchData();
-  }, [filters, page, perPage]);
+  }, [params, filters]);
 
   return (
-    <div className="row">
-      <div className="main-content col-md-12">
-        <div className="shop-control shop-before-control">
-          <form className="akasha-ordering" method="get">
-            <select title="product_cat" name="orderby" className="orderby">
-              <option value="menu_order">Default sorting</option>
-              <option value="popularity">Sort by popularity</option>
-              <option value="rating">Sort by average rating</option>
-              <option value="date">Sort by latest</option>
-              <option value="price">Sort by price: low to high</option>
-              <option value="price-desc">Sort by price: high to low</option>
-            </select>
-          </form>
-          <div>
-            <SelectBox
-              options={perPageOptions}
-              selected={perPage}
-              changeHandler={(p): void => {
-                setPerPage(Number(p));
-                setPage(1);
-              }}
-            />
-          </div>
-        </div>
-        <div className="auto-clear equal-container better-height akasha-products">
-          <ul className="row products columns-3">
-            {products.products.map(product => (
-              <ProductTeaser key={product.id} product={product} />
-            ))}
-          </ul>
-        </div>
-        <Pagination page={page} total={products.total} perPage={perPage} onPageChanged={setPage} />
+    <div className="product-list row col-md-12">
+      <div className="product-list-control">
+        <SelectBox
+          options={sortingOptions}
+          selected={filters.sortBy}
+          changeHandler={(sortBy): void => {
+            setFilters({ ...filters, sortBy: String(sortBy) });
+          }}
+        />
+        <SelectBox
+          options={perPageOptions}
+          selected={filters.perPage}
+          changeHandler={(p): void => setFilters({ ...filters, perPage: Number(p), page: 1 })}
+        />
       </div>
+      <div>
+        <ul className="products">
+          {products.products.map(product => (
+            <ProductTeaser key={product.id} product={product} />
+          ))}
+        </ul>
+      </div>
+      <Pagination
+        page={filters.page}
+        total={products.total}
+        perPage={filters.perPage}
+        onPageChanged={(page: number): void => setFilters({ ...filters, page })}
+      />
     </div>
   );
 };

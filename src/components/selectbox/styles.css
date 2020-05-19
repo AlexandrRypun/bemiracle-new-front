@@ -1,0 +1,15 @@
+.select-box {
+    margin-left: 9px;
+    margin-bottom: 10px;
+    border: 1px solid #e4e4e4;
+    line-height: 44px;
+    padding: 0 42px 0 22px;
+    height: 46px;
+}
+
+@media (max-width: 480px) {
+    .select-box {
+        width: 100%;
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,10 @@
+.product-list .product-list-control {
+    text-align: right;
+    padding-bottom: 30px;
+    width: 100%;
+}
+.product-list .products {
+    padding-left: 0;
+    margin-right: -15px;
+    margin-left: -15px;
+}

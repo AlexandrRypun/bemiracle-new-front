@@ -32,7 +32,7 @@ li.product-teaser .group-button .add-to-cart {
     transition: all 0.25s ease 0s;
     cursor: pointer;
 }
-li.product-teaser:hover .group-button .add-to-cart {
+li.product-teaser .product-teaser-inner:hover .group-button .add-to-cart {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
