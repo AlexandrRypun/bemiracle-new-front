@@ -1,4 +1,5 @@
 import { EntityWithTranslations, LANG } from './common';
+import { Category } from './categories';
 
 export interface ProductImage {
   id: number;
@@ -14,6 +15,7 @@ export interface ProductTranslation {
   name: string;
   description: string;
   shortDescription: string;
+  ingredients: string;
 }
 
 export interface Product extends EntityWithTranslations {
@@ -21,12 +23,14 @@ export interface Product extends EntityWithTranslations {
   price: number;
   oldPrice: number | null;
   categoryId: number;
+  inStock: number;
   images: ProductImage[];
   translations: ProductTranslation[];
+  category: Category;
 }
 
 export interface CartProduct extends Product {
-  quantity: number;
+  inCart: number;
 }
 
 export enum IMG_SIZE {

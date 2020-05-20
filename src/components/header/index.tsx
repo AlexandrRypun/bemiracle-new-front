@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef, useContext } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
@@ -10,6 +10,7 @@ import { Category } from '../../types/categories';
 import useDetectClick from '../../hooks/use-detect-click';
 import { BrowserContext } from '../../contexts/browser';
 import './styles.css';
+import { LANG } from '../../types/common';
 
 enum SubMenus {
   CATEGORIES = 'categories',
@@ -21,8 +22,8 @@ const Header: React.FC = () => {
   useEffect(() => {
     setTimeout(() => {
       setCategories([
-        { id: 1, name: 'AAA' },
-        { id: 2, name: 'BBB' },
+        { id: 1, translations: [{ id: 1, lang: LANG.EN, name: 'AAA' }] },
+        { id: 2, translations: [{ id: 2, lang: LANG.EN, name: 'BBB' }] },
       ]);
     }, 2000);
   }, [setCategories]);

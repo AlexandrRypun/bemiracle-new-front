@@ -21,6 +21,7 @@ import './assets/fonts/flaticon.css';
 import './assets/css/megamenu.css';
 import './assets/css/dreaming-attribute.css';
 import './assets/css/style.css';
+import './index.css';
 
 const App: React.FC = () => (
   <BrowserProvider>

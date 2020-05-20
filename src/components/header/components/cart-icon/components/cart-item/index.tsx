@@ -23,7 +23,7 @@ const CartItem: React.FC<Props> = ({ product }) => {
         {getTranslation('name', product)}
       </Link>
       <span className="quantity">
-        {product.quantity} × <span>$</span>
+        {product.inCart} × <span>$</span>
         {product.price}
       </span>
     </li>

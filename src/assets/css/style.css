@@ -3032,7 +3032,7 @@ th, td {
 	transition: background-color 0.5s ease 0s, padding 0.5s linear;
 	-o-transition: background-color 0.5s ease 0s, padding 0.5s linear;
 	-webkit-transition: background-color 0.5s ease 0s, padding 0.5s linear;
-	padding: 15px 0;
+	padding: 10px 0;
 }
 .header-position.fixed {
 	max-width: 100%;
@@ -3046,12 +3046,6 @@ th, td {
 }
 .admin-bar .header-position.fixed {
 	top: 32px;
-}
-@media (max-width: 1280px) {
-	.header.style-01 .header-logo,
-	.header-position {
-		padding: 10px 0;
-	}
 }
 .header-position.fixed {
 	padding: 0 !important;
