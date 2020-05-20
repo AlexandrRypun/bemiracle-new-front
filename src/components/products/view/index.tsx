@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 
 import useRequest from '../../../hooks/use-request';
 import { IMG_SIZE, Product } from '../../../types/products';
@@ -21,6 +22,8 @@ const ProductView: React.FC<Props> = ({ productId }) => {
   const [product, setProduct] = useState<Product | null>(null);
   const [qty, setQty] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<TAB>(TAB.DESC);
+  const [slider1, setSlider1] = useState<Slider | undefined>();
+  const [slider2, setSlider2] = useState<Slider | undefined>();
 
   const endpoint = useMemo(() => `products/${productId}`, [productId]);
   const { isFetching, getData } = useRequest({ endpoint, initIsFetching: true });
@@ -62,21 +65,51 @@ const ProductView: React.FC<Props> = ({ productId }) => {
           <div className="main-contain-summary">
             <div className="contain-left">
               <div className="single-left">
-                <div className="akasha-product-gallery">
-                  <div className="flex-viewport">
-                    <figure className="product-image-gallery">
-                      <div>
-                        <img alt="img" src="http://192.168.1.5:3000/products/image/16" />
-                      </div>
-                    </figure>
-                  </div>
-                  <ol className="flex-control-nav flex-control-thumbs">
+                <div className="product-slider akasha-product-gallery">
+                  <Slider
+                    asNavFor={slider2}
+                    ref={slider => setSlider1(slider || undefined)}
+                    arrows={false}
+                    draggable={false}
+                    fade={true}
+                    className="flex-viewport"
+                  >
                     {product.images.map(image => (
-                      <li key={image.id}>
-                        <img src={getImgSrc(image, IMG_SIZE.THUMBNAIL)} alt={prodName} />
-                      </li>
+                      <img key={image.id} alt="prodName" src={getImgSrc(image)} />
                     ))}
-                  </ol>
+                  </Slider>
+                  <Slider
+                    asNavFor={slider1}
+                    ref={slider => setSlider2(slider || undefined)}
+                    vertical={true}
+                    slidesToShow={3}
+                    slidesToScroll={1}
+                    dots={false}
+                    prevArrow={<span className="fa fa-angle-up prev" />}
+                    nextArrow={<span className="fa fa-angle-down next" />}
+                    focusOnSelect={true}
+                    className="flex-control-nav flex-control-thumbs"
+                    responsive={[
+                      {
+                        breakpoint: 992,
+                        settings: {
+                          vertical: false,
+                          slidesToShow: 3,
+                          prevArrow: <span className="fa fa-angle-left prev" />,
+                          nextArrow: <span className="fa fa-angle-right next" />,
+                        },
+                      },
+                    ]}
+                  >
+                    {product.images.map(image => (
+                      <img
+                        key={image.id}
+                        src={getImgSrc(image, IMG_SIZE.THUMBNAIL)}
+                        className="product-slide-icon"
+                        alt={prodName}
+                      />
+                    ))}
+                  </Slider>
                 </div>
               </div>
               <div className="entry-summary">

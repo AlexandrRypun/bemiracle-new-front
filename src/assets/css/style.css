@@ -2294,12 +2294,7 @@ th, td {
 		padding: 0 13px;
 	}
 }
-@media (max-width: 1023px) {
-	.box-header-nav .main-menu {
-		opacity: 0;
-		visibility: hidden;
-	}
-}
+
 /* ==========================================================================
 3.3 BLOCK SEARCH
 ========================================================================== */
@@ -3623,11 +3618,6 @@ th, td {
 	transform: rotate(45deg);
 }
 @media (max-width: 1023px) {
-	.header-top,
-	.header-middle,
-	.header-wrap-stick {
-		display: none;
-	}
 	.header {
 		padding-left: 15px;
 		padding-right: 15px;

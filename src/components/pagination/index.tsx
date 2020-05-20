@@ -33,7 +33,6 @@ const Pagination: React.FC<Props> = ({ page, perPage, total, onPageChanged }) =>
     const to = page * perPage;
     return [from, total < to ? total : to];
   }, [page, perPage, total]);
-  console.log(page);
 
   return (
     <div className="pagination">
