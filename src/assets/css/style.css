@@ -975,21 +975,6 @@ article.sticky .post-title a::before {
 	padding: 0 35px 10px;
 	margin: 10px auto 30px;
 }
-.widget_shopping_cart .widget_shopping_cart_content .minicart-title .minicart-number-items {
-	position: absolute;
-	top: -15px;
-	right: 10px;
-	display: inline-block;
-	min-width: 23px;
-	height: 23px;
-	line-height: 25px;
-	text-align: center;
-	padding: 0 3px;
-	border-radius: 50%;
-	background-color: #fa8f47;
-	font-size: 12px;
-	color: #ffffff;
-}
 .widget_shopping_cart .product_list_widget {
 	padding-left: 0;
 	list-style: none;
@@ -7291,20 +7276,6 @@ body.admin-bar #yith-quick-view-modal {
 .entry-summary .akasha-product-rating .akasha-review-link {
 	display: none;
 }
-.stock {
-	margin-bottom: 15px;
-	font-size: 14px;
-	line-height: 28px;
-	position: relative;
-	font-weight: 500;
-	color: #000;
-}
-.stock.in-stock span {
-	color: #fa8f47;
-}
-.stock.out-stock span {
-	color: #000000;
-}
 .entry-summary .akasha-product-details__short-description {
 	margin-bottom: 18px;
 	border-bottom: 1px solid #e6e6e6;
@@ -9777,9 +9748,6 @@ form.akasha-form-login .lost_password a::before {
 .akasha table.wishlist_table tr td.product-stock-status span {
 	font-weight: 600;
 	font-size: 14px;
-}
-.akasha table.wishlist_table tr td.product-stock-status span.wishlist-in-stock {
-	color: #000000;
 }
 .akasha table.wishlist_table td.product-add-to-cart {
 	border-right: 0;

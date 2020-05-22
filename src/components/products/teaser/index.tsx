@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { IMG_SIZE, Product } from '../../../types/products';
 import { getTranslation } from '../../../utils/common';
 import { getMainImgSrc } from '../../../utils/products';
+import { CartContext } from '../../../contexts/cart';
+
 import './styles.css';
 
 type Props = {
   product: Product;
 };
 const ProductTeaser: React.FC<Props> = ({ product }) => {
+  const { alreadyInCart, addToCart } = useContext(CartContext);
+  const canAddToCart = useMemo(() => product.inStock - alreadyInCart(product.id) > 0, [
+    product.id,
+    product.inStock,
+    alreadyInCart,
+  ]);
+
   return (
     <li className="product-teaser col-bg-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-ts-6">
       <div className="product-teaser-inner">
@@ -29,9 +38,11 @@ const ProductTeaser: React.FC<Props> = ({ product }) => {
             </span>
           </div>
           <div className="group-button">
-            <div className="add-to-cart">
-              <span className="add-to-cart-button" />
-            </div>
+            {canAddToCart && (
+              <div className="add-to-cart" onClick={(): void => addToCart(product, 1)}>
+                <span className="add-to-cart-button" />
+              </div>
+            )}
           </div>
         </div>
         <div className="product-data">

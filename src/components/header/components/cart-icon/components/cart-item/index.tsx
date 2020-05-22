@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { CartProduct, IMG_SIZE } from '../../../../../../types/products';
 import { getTranslation } from '../../../../../../utils/common';
 import { getMainImgSrc } from '../../../../../../utils/products';
+
 import './styles.css';
 
-interface Props extends React.ComponentProps<any> {
+type Props = {
   product: CartProduct;
-}
-const CartItem: React.FC<Props> = ({ product }) => {
+  removeFromCart: (id: number) => (e: MouseEvent) => void;
+};
+const CartItem: React.FC<Props> = ({ product, removeFromCart }) => {
   return (
     <li className="mini_cart_item">
-      <span className="cart-icon-item-remove">×</span>
+      <span className="cart-icon-item-remove" onClick={removeFromCart(product.id)}>
+        ×
+      </span>
       <Link to={`/products/${product.id}`}>
         <img
           src={getMainImgSrc(product, IMG_SIZE.THUMBNAIL)}

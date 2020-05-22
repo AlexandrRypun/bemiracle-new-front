@@ -1,4 +1,4 @@
-.cart-icon-icon {
+.cart-icon .icon {
     cursor: pointer;
     display: block;
     font-size: 23px;
@@ -10,21 +10,31 @@
     color: #000000;
     transition: color 0.25s, border-color 0.25s, background-color 0.25s, opacity 0.25s, width 0.25s ease 0s;
 }
-.cart-icon-icon:hover {
+.cart-icon .icon:hover {
     color: #fa8f47;
 }
-.cart-icon-icon .count {
+.cart-icon .icon .count,
+.cart-icon .cart-canvas .count {
     position: absolute;
-    top: 6px;
-    right: -11px;
     display: inline-block;
     min-width: 23px;
     height: 23px;
-    line-height: 25px;
+    line-height: 23px;
     text-align: center;
-    padding: 0 3px;
+    padding-left: 1px;
     border-radius: 50%;
     background-color: #fa8f47;
     font-size: 12px;
     color: #ffffff;
+}
+.cart-icon .icon .count {
+    top: 6px;
+    right: -11px;
+}
+.cart-icon .cart-canvas .count {
+    top: -15px;
+    right: 10px;
+}
+.cart-icon .products-list {
+    overflow-y: auto;
 }

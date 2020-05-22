@@ -1,14 +1,15 @@
-import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ChangeEvent, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import useRequest from '../../../hooks/use-request';
 import { IMG_SIZE, Product } from '../../../types/products';
-
-import './styles.css';
 import { getTranslation } from '../../../utils/common';
 import Loader from '../../loader';
 import { getImgSrc } from '../../../utils/products';
+import { CartContext } from '../../../contexts/cart';
+
+import './styles.css';
 
 enum TAB {
   DESC = 'description',
@@ -25,21 +26,34 @@ const ProductView: React.FC<Props> = ({ productId }) => {
   const [slider1, setSlider1] = useState<Slider | undefined>();
   const [slider2, setSlider2] = useState<Slider | undefined>();
 
+  const { alreadyInCart, addToCart } = useContext(CartContext);
+  const inCart = useMemo(() => (product ? alreadyInCart(product.id) : 0), [alreadyInCart, product]);
+  const maxAddToCart = useMemo(() => {
+    const canAdd = product ? product.inStock - inCart : 0;
+    return canAdd > 0 ? canAdd : 0;
+  }, [product, inCart]);
+
   const endpoint = useMemo(() => `products/${productId}`, [productId]);
   const { isFetching, getData } = useRequest({ endpoint, initIsFetching: true });
   useEffect(() => {
     const fetchData = async () => {
       const response = await getData<Product>();
-      setProduct({ ...response, inStock: 9 });
+      setProduct(response);
     };
     fetchData();
   }, []);
 
   const changeQty = useCallback(
     (newQty: number): void => {
-      setQty(Number.isNaN(newQty) || newQty < 1 || !product ? 1 : newQty > product.inStock ? product.inStock : newQty);
+      setQty(
+        Number.isNaN(newQty) || newQty < 1 || !product || maxAddToCart < 1
+          ? 1
+          : newQty > maxAddToCart
+          ? maxAddToCart
+          : newQty,
+      );
     },
-    [setQty, product],
+    [setQty, product, maxAddToCart],
   );
   const getTabContent = useCallback((): React.ReactElement => {
     let content = <></>;
@@ -123,6 +137,9 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                 <p className={`stock ${product.inStock > 0 ? 'in' : 'out'}-stock`}>
                   Availability: <span>{product.inStock > 0 ? 'In stock' : 'Not available'}</span>
                 </p>
+                <p className="already-in-cart">
+                  Already in cart: <span>{inCart}</span>
+                </p>
                 <div className="product-short-description">{getTranslation('shortDescription', product)}</div>
                 <div className="cart">
                   <div className="quantity">
@@ -136,7 +153,14 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                       <span className="qty-arrow qty-plus" onClick={(): void => changeQty(qty + 1)} />
                     </div>
                   </div>
-                  <button className={`product-add-to-cart ${product.inStock > 0 ? '' : 'disabled'}`}>
+                  <button
+                    className={`product-add-to-cart ${maxAddToCart > 0 ? '' : 'disabled'}`}
+                    onClick={(): void => {
+                      if (maxAddToCart >= qty) {
+                        addToCart(product, qty);
+                      }
+                    }}
+                  >
                     Add to cart
                   </button>
                 </div>

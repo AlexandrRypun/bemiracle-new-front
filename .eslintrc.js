@@ -17,6 +17,8 @@ module.exports =  {
     rules:  {
         'react/prop-types': [0],
         'arrow-parens': 0,
+        'no-empty-function': 0,
+        "@typescript-eslint/no-empty-function": 0
         // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
         // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     },
