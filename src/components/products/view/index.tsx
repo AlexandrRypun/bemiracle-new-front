@@ -6,7 +6,7 @@ import useRequest from '../../../hooks/use-request';
 import { IMG_SIZE, Product } from '../../../types/products';
 import { getTranslation } from '../../../utils/common';
 import Loader from '../../loader';
-import { getImgSrc } from '../../../utils/products';
+import { getImgSrc, getMainImgSrc } from '../../../utils/products';
 import { CartContext } from '../../../contexts/cart';
 
 import './styles.css';
@@ -72,6 +72,11 @@ const ProductView: React.FC<Props> = ({ productId }) => {
 
   const prodName = useMemo(() => (product ? getTranslation('name', product) : ''), [product]);
 
+  const slidesToShow = useMemo(() => {
+    const imgQty = product ? product.images.length : 0;
+    return imgQty < 2 ? 1 : imgQty === 2 ? 2 : 3;
+  }, [product?.images]);
+
   return (
     <Loader isLoading={isFetching}>
       {product ? (
@@ -88,15 +93,17 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                     fade={true}
                     className="flex-viewport"
                   >
-                    {product.images.map(image => (
-                      <img key={image.id} alt="prodName" src={getImgSrc(image)} />
-                    ))}
+                    {product.images.length > 0 ? (
+                      product.images.map(image => <img key={image.id} alt={prodName} src={getImgSrc(image)} />)
+                    ) : (
+                      <img alt={prodName} src={getMainImgSrc(product)} />
+                    )}
                   </Slider>
                   <Slider
                     asNavFor={slider1}
                     ref={slider => setSlider2(slider || undefined)}
                     vertical={true}
-                    slidesToShow={3}
+                    slidesToShow={slidesToShow}
                     slidesToScroll={1}
                     dots={false}
                     prevArrow={<span className="fa fa-angle-up prev" />}
@@ -108,21 +115,29 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                         breakpoint: 992,
                         settings: {
                           vertical: false,
-                          slidesToShow: 3,
+                          slidesToShow,
                           prevArrow: <span className="fa fa-angle-left prev" />,
                           nextArrow: <span className="fa fa-angle-right next" />,
                         },
                       },
                     ]}
                   >
-                    {product.images.map(image => (
+                    {product.images.length > 0 ? (
+                      product.images.map(image => (
+                        <img
+                          key={image.id}
+                          src={getImgSrc(image, IMG_SIZE.THUMBNAIL)}
+                          className="product-slide-icon"
+                          alt={prodName}
+                        />
+                      ))
+                    ) : (
                       <img
-                        key={image.id}
-                        src={getImgSrc(image, IMG_SIZE.THUMBNAIL)}
+                        src={getMainImgSrc(product, IMG_SIZE.THUMBNAIL)}
                         className="product-slide-icon"
                         alt={prodName}
                       />
-                    ))}
+                    )}
                   </Slider>
                 </div>
               </div>
