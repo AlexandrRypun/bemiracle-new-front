@@ -99,13 +99,11 @@ const ProductsList: React.FC<Props> = ({ params }) => {
           changeHandler={(p): void => setFilters({ ...filters, perPage: Number(p), page: 1 })}
         />
       </div>
-      <div>
-        <ul className="products">
-          {products.products.map(product => (
-            <ProductTeaser key={product.id} product={product} />
-          ))}
-        </ul>
-      </div>
+      <ul className="products">
+        {products.products.map(product => (
+          <ProductTeaser key={product.id} product={product} />
+        ))}
+      </ul>
       <Pagination
         page={filters.page}
         total={products.total}

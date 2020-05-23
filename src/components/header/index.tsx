@@ -10,7 +10,7 @@ import { Category } from '../../types/categories';
 import useDetectClick from '../../hooks/use-detect-click';
 import { BrowserContext } from '../../contexts/browser';
 import './styles.css';
-import { LANG } from '../../types/common';
+import useRequest from '../../hooks/use-request';
 
 enum SubMenus {
   CATEGORIES = 'categories',
@@ -18,14 +18,15 @@ enum SubMenus {
 
 const Header: React.FC = () => {
   const { isMobile } = useContext(BrowserContext);
+
   const [categories, setCategories] = useState<Category[]>([]);
+  const { getData } = useRequest({ endpoint: 'categories' });
   useEffect(() => {
-    setTimeout(() => {
-      setCategories([
-        { id: 1, translations: [{ id: 1, lang: LANG.EN, name: 'AAA' }] },
-        { id: 2, translations: [{ id: 2, lang: LANG.EN, name: 'BBB' }] },
-      ]);
-    }, 2000);
+    const fetchData = async (): Promise<void> => {
+      const categories = await getData<Category[]>();
+      setCategories(categories);
+    };
+    fetchData();
   }, [setCategories]);
 
   const [mobileMenuOpened, setMobileMenuOpened] = useState<boolean>(false);
