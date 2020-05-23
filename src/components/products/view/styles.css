@@ -144,6 +144,9 @@
     color: #000;
     cursor: pointer;
 }
+.product-view .product-slider .slick-track {
+    max-height: 336px;
+}
 .product-view .product-slider .flex-control-nav .slick-arrow.slick-prev {
     margin-bottom: 3px;
 }
