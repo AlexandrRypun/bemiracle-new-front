@@ -19,11 +19,11 @@ const initialValue = {
 export const CartContext = React.createContext<ContextProps>(initialValue);
 
 const CartProvider: React.FC<React.PropsWithChildren<React.ReactNode>> = ({ children }) => {
-  const cartProducts = useMemo<CartProduct[]>(() => {
+  const getStoredCartProducts = useCallback((): CartProduct[] => {
     const storedCartProducts = localStorage.getItem('cartProducts');
     return storedCartProducts ? JSON.parse(storedCartProducts) : [];
   }, []);
-  const [products, setProducts] = useState<CartProduct[]>(cartProducts);
+  const [products, setProducts] = useState<CartProduct[]>(getStoredCartProducts());
 
   useEffect(() => {
     localStorage.setItem('cartProducts', JSON.stringify(products));
@@ -41,31 +41,33 @@ const CartProvider: React.FC<React.PropsWithChildren<React.ReactNode>> = ({ chil
     inCartQuantities,
   ]);
   const addToCart = useCallback((product: Product, qty: number): void => {
-    setProducts(products => {
-      const index = products.findIndex(({ id }) => product.id === id);
-      if (index === -1) {
-        products.push({ ...product, inCart: qty });
-      } else {
-        products.splice(index, 1, { ...products[index], inCart: products[index].inCart += qty });
-      }
-      return [...products];
-    });
+    const products = getStoredCartProducts();
+    const index = products.findIndex(({ id }) => product.id === id);
+    if (index === -1) {
+      products.push({ ...product, inCart: qty });
+    } else {
+      const newQty = products[index].inCart + qty;
+      products.splice(index, 1, {
+        ...products[index],
+        inCart: newQty > products[index].inStock ? products[index].inStock : newQty,
+      });
+    }
+    setProducts(products);
   }, []);
 
   const removeFromCart = useCallback((productId: number, qty?: number): void => {
-    setProducts(products => {
-      const index = products.findIndex(({ id }) => productId === id);
-      const product = products[index];
-      if (index !== -1) {
-        const newQty = qty ? product.inCart - qty : 0;
-        if (newQty < 1) {
-          products.splice(index, 1);
-        } else {
-          products.splice(index, 1, { ...product, inCart: newQty });
-        }
+    const products = getStoredCartProducts();
+    const index = products.findIndex(({ id }) => productId === id);
+    const product = products[index];
+    if (index !== -1) {
+      const newQty = qty ? product.inCart - qty : 0;
+      if (newQty < 1) {
+        products.splice(index, 1);
+      } else {
+        products.splice(index, 1, { ...product, inCart: newQty });
       }
-      return [...products];
-    });
+    }
+    setProducts(products);
   }, []);
 
   return (

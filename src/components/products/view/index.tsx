@@ -10,6 +10,7 @@ import { getImgSrc, getMainImgSrc } from '../../../utils/products';
 import { CartContext } from '../../../contexts/cart';
 
 import './styles.css';
+import InputNumber from '../../input-number';
 
 enum TAB {
   DESC = 'description',
@@ -158,15 +159,7 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                 <div className="product-short-description">{getTranslation('shortDescription', product)}</div>
                 <div className="cart">
                   <div className="quantity">
-                    <div className="control">
-                      <span className="qty-arrow qty-minus" onClick={(): void => changeQty(qty - 1)} />
-                      <input
-                        value={qty}
-                        className="product-qty"
-                        onChange={(e: ChangeEvent<HTMLInputElement>): void => changeQty(Number(e.target.value))}
-                      />
-                      <span className="qty-arrow qty-plus" onClick={(): void => changeQty(qty + 1)} />
-                    </div>
+                    <InputNumber value={qty} changeHandler={changeQty} />
                   </div>
                   <button
                     className={`product-add-to-cart ${maxAddToCart > 0 ? '' : 'disabled'}`}
