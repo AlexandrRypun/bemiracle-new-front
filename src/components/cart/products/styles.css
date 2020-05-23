@@ -1,0 +1,59 @@
+.cart-products-list colgroup .remove {
+    width: 6%;
+}
+.cart-products-list colgroup .image {
+    width: 16%;
+}
+.cart-products-list colgroup .name {
+    width: 30%;
+}
+.cart-products-list colgroup .price {
+    width: 16%;
+}
+.cart-products-list colgroup .quantity {
+    width: 16%;
+}
+.cart-products-list colgroup .subtotal {
+    width: 16%;
+}
+.cart-products-list thead th {
+    background-color: #e9e9e9;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
+.cart-products-list thead th.name {
+    text-align: left;
+}
+.cart-products-list tr:first-child td, .cart-products-list tr:first-child th {
+    border-top: 0;
+}
+
+@media (max-width: 767px) {
+    .cart-products-list {
+        display: block;
+        margin-bottom: 0;
+    }
+    .cart-products-list thead {
+        display: none;
+    }
+    .cart-products-list tbody,
+    .cart-products-list tr,
+    .cart-products-list td {
+        display: inline-block;
+        text-align: center !important;
+        width: 100% !important;
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
+    }
+    .cart-products-list tr {
+        border: 2px solid #dadada;
+    }
+    .cart-products-list tr:not(:first-child) {
+        border-top: 0;
+    }
+}

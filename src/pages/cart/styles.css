@@ -1,0 +1,51 @@
+.cart-page .total {
+    display: inline-block;
+    width: 100%;
+    padding-top: 40px;
+}
+.cart-page .total h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #fa8f47;
+    padding: 25px;
+    margin: 0;
+    border-radius: 3px 3px 0 0;
+}
+.cart-page .total table {
+    background-color: #f6f6f6;
+    margin-bottom: 0;
+    border: 0;
+}
+.cart-page .total table tr:not(:last-child) {
+    border-bottom: 1px solid #ebebeb;
+}
+.cart-page .total table tr th {
+    width: 35%;
+    vertical-align: top;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    border: 0;
+    padding: 15px 20px;
+}
+.cart-page .total table tr td {
+    vertical-align: top;
+    text-align: right;
+    border: 0;
+    padding: 15px 20px;
+    font-size: 18px;
+    color: #fa8f47;
+    font-weight: normal;
+}
+.cart-page .to-checkout a {
+    display: block;
+    background-color: #000;
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 0 0 3px 3px;
+    text-align: center;
+}

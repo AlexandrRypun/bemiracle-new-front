@@ -1,11 +1,13 @@
 import React, { useCallback, useContext, useEffect, useRef, useState, MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
+
 import Canvas from '../../../canvas';
 import useDetectClick from '../../../../hooks/use-detect-click';
-
-import './styles.css';
 import CartItem from './components/cart-item';
 import { useHistory } from 'react-router-dom';
 import { CartContext } from '../../../../contexts/cart';
+
+import './styles.css';
 
 const CartIcon: React.FC<React.ComponentProps<any>> = () => {
   const { products, removeFromCart } = useContext(CartContext);
@@ -59,9 +61,7 @@ const CartIcon: React.FC<React.ComponentProps<any>> = () => {
               </span>
             </p>
             <p className="akasha-mini-cart__buttons buttons">
-              <a href="cart.html" className="button akasha-forward">
-                Viewcart
-              </a>
+              <Link to="/cart" className="button akasha-forward">Viewcart</Link>
               <a href="checkout.html" className="button checkout akasha-forward">
                 Checkout
               </a>
