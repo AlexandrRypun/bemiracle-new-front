@@ -61,10 +61,12 @@ const CartIcon: React.FC<React.ComponentProps<any>> = () => {
               </span>
             </p>
             <p className="akasha-mini-cart__buttons buttons">
-              <Link to="/cart" className="button akasha-forward">Viewcart</Link>
-              <a href="checkout.html" className="button checkout akasha-forward">
+              <Link to="/cart" className="button akasha-forward">
+                View cart
+              </Link>
+              <Link to="/checkout" className="button checkout akasha-forward">
                 Checkout
-              </a>
+              </Link>
             </p>
           </div>
         </div>

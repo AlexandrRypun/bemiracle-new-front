@@ -1,0 +1,354 @@
+.checkout-page .login-block {
+    padding: 40px 20px 50px 122px;
+    background-color: #f6f6f6;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #000;
+    text-transform: uppercase;
+    border-radius: 0;
+    margin: 0 0 30px;
+    position: relative;
+    list-style: none !important;
+    width: auto;
+    word-wrap: break-word;
+}
+.checkout-page .login-block::before {
+    width: 84px;
+    height: 84px;
+    line-height: 84px;
+    border-radius: 50%;
+    background-color: #fff;
+    content: "\f13d";
+    font-family: 'Flaticon', sans-serif;
+    text-align: center;
+    font-size: 36px;
+    font-weight: normal;
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    letter-spacing: 0;
+}
+.checkout-page .login-block a.login {
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 0;
+    text-transform: initial;
+    padding-top: 6px;
+    color: #868686;
+}
+.checkout-page .login-block a.login:hover {
+    color: #fa8f47;
+}
+.checkout-page .customer-details {
+    float: left;
+    width: calc(100% - 480px);
+}
+.checkout-page .customer-details .address {
+    position: relative;
+    background-color: #f6f6f6;
+    border-radius: 0;
+    max-width: 100%;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 8.333333%;
+}
+.checkout-page .customer-details .shipping h3 {
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 25px;
+    border-bottom: 1px solid #ebebeb;
+    margin: 0;
+}
+.checkout-page .shipping .shipping-fields {
+    padding: 30px 25px 35px 25px;
+}
+.checkout-page .shipping .shipping-fields input {
+    width: 100%;
+    height: 52px;
+    line-height: 50px;
+    background-color: #fff;
+    border-color: #fff;
+}
+.checkout-page .customer-details .account-fields {
+    padding: 0 25px 35px 25px;
+}
+.checkout-page .customer-details .account-fields label span {
+    position: relative;
+    font-size: 18px;
+    color: #000;
+    padding-left: 26px;
+}
+.checkout-page .customer-details .account-fields label span::before {
+    content: "";
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background-color: #e8e8e8;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.checkout-page .customer-details .account-fields label input {
+    display: none;
+}
+.checkout-page .customer-details .account-fields label input:checked + span::before {
+    background-color: #fa8f47;
+}
+.checkout-page .customer-details .account-fields label input:checked + span::after {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    position: absolute;
+    left: 6px;
+    top: 12px;
+}
+.checkout-page .customer-details .additional-info {
+    margin-top: 30px;
+    background-color: #f6f6f6;
+    padding: 25px 25px 35px;
+    border-radius: 0;
+    max-width: 100%;
+}
+.checkout-page .customer-details .additional-info textarea {
+    border-radius: 0;
+    background-color: #fff;
+    border-color: #fff;
+    height: 195px;
+}
+.checkout-page .order-review-header {
+    float: right;
+    width: 450px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #fa8f47;
+    padding: 25px;
+    margin: 0;
+}
+.checkout-page .order-review {
+    float: right;
+    width: 480px;
+    padding-left: 30px;
+}
+.checkout-page .order-review .order-table {
+    background-color: #f6f6f6;
+    border: 0;
+    margin-bottom: 30px;
+}
+.checkout-page .order-review .order-table thead {
+    background-color: #e9e9e9;
+}
+.checkout-page .order-review .order-table thead th {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #000;
+    vertical-align: top;
+    padding: 22px 25px;
+    width: 30%;
+    border-left: 0;
+    border-right: 0;
+}
+.checkout-page .order-review .order-table tr th:last-child,
+.checkout-page .order-review .order-table tr td:last-child {
+    text-align: right;
+}
+.checkout-page .order-review .order-table tr:first-child th,
+.checkout-page .order-review .order-table tr:first-child td {
+    border-top: 0;
+}
+.checkout-page .order-review .order-table th,
+.checkout-page .order-review .order-table td {
+    border-left: 0;
+    border-right: 0;
+    padding: 17px 25px;
+    font-size: 15px;
+    color: #000;
+}
+.checkout-page .order-review .order-table tbody td:first-child {
+    font-weight: 500;
+}
+.checkout-page .order-review .order-table tfoot th {
+    font-size: 16px;
+    color: #000;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 22px 25px;
+    border-bottom: 0;
+}
+.checkout-page .order-review .order-table tfoot td {
+    border-bottom: 0;
+    font-size: 20px;
+    color: #fa8f47;
+    font-weight: 600;
+}
+.checkout-page .order-review .payment {
+    background-color: #f6f6f6;
+    border-radius: 0;
+}
+.checkout-page .order-review .payment ul {
+    padding: 30px 30px 20px 30px;
+    list-style: none;
+}
+.checkout-page .order-review .payment ul li:not(:last-child) {
+    padding-bottom: 20px;
+}
+.checkout-page .order-review .payment ul li input[type=radio] {
+    display: none;
+}
+.checkout-page .order-review .payment ul li label {
+    position: relative;
+    padding-left: 26px;
+    color: #000;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+.checkout-page .order-review .payment ul li label::before {
+    content: "";
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background-color: #e8e8e8;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+.checkout-page .order-review .payment ul li input:checked + label::before {
+    background-color: #fa8f47;
+}
+.checkout-page .order-review .payment ul li input:checked + label::after {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    left: 6px;
+    top: 8px;
+}
+.checkout-page .order-review .payment .method-details {
+    background-color: #e9e9e9;
+    position: relative;
+    padding: 15px;
+    margin-top: 18px;
+}
+.checkout-page .order-review .payment .method-details::before {
+    content: '';
+    border-width: 0 9px 10px 9px;
+    border-style: solid;
+    border-color: transparent transparent #e9e9e9 transparent;
+    position: absolute;
+    top: -10px;
+    left: 25px;
+}
+.checkout-page .order-review .payment .method-details p {
+    margin-bottom: 0;
+}
+.checkout-page .order-review .terms-and-conditions {
+    padding: 0 30px;
+}
+.checkout-page .order-review .submit-order {
+    width: 100%;
+    background-color: #000;
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+.checkout-page .order-review .submit-order:hover {
+    background-color: #fa8f47;
+}
+
+@media (max-width: 1199px) {
+    .checkout-page .login-block {
+        letter-spacing: 0.1em;
+    }
+    .checkout-page .customer-details {
+        float: none;
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+    .checkout-page .order-review {
+        float: none;
+        width: 100%;
+        padding-left: 0;
+    }
+    .checkout-page .customer-details .shipping h3,
+    .checkout-page .shipping .shipping-fields {
+        padding: 20px 15px;
+    }
+    .checkout-page .customer-details .shipping h3 {
+        font-size: 16px;
+        letter-spacing: 0.1em;
+    }
+    .checkout-page .customer-details .additional-info {
+        padding: 20px 15px;
+    }
+    .checkout-page .customer-details .additional-info h3 {
+        font-size: 20px;
+    }
+    .checkout-page .customer-details .account-fields {
+        padding: 0 15px 20px 15px;
+    }
+    .checkout-page .order-review-header {
+        float: none;
+        width: 100%;
+        font-size: 16px;
+        padding: 20px 15px;
+        letter-spacing: 0.1em;
+    }
+    .checkout-page .order-review .order-table th,
+    .checkout-page .order-review .order-table td {
+        padding: 15px !important;
+    }
+    .checkout-page .order-review .payment ul {
+        padding: 20px 15px;
+    }
+    .checkout-page .order-review .terms-and-conditions {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .checkout-page .login-block {
+        padding: 25px 15px 25px 90px;
+    }
+    .checkout-page .login-block::before {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        left: 15px;
+        font-size: 28px;
+    }
+    .checkout-page .customer-details .additional-info h3 {
+        font-size: 18px;
+    }
+    .checkout-page .order-review-header {
+        text-align: center;
+    }
+    .checkout-page .order-review .order-table thead th,
+    .checkout-page .order-review .order-table tbody td:first-child {
+        width: 75%;
+    }
+}

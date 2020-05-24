@@ -8,6 +8,7 @@ import AboutUs from './pages/about-us/about-us';
 import Category from './pages/category/category';
 import Product from './pages/product';
 import Cart from './pages/cart';
+import Checkout from './pages/checkout';
 import BrowserProvider from './contexts/browser';
 import CartProvider from './contexts/cart';
 
@@ -37,6 +38,7 @@ const App: React.FC = () => (
             <Route path="/category/:categoryId" component={Category} />
             <Route path="/products/:productId" component={Product} />
             <Route path="/cart" component={Cart} />
+            <Route path="/checkout" component={Checkout} />
           </Switch>
         </div>
         <Footer />
