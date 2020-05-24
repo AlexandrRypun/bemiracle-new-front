@@ -1,5 +1,8 @@
 import React from 'react';
 
+import OrderProducts from '../../components/checkout/order-products';
+import PaymentMethods from '../../components/checkout/payment-methods';
+
 import './styles.css';
 
 const Checkout: React.FC = () => {
@@ -66,47 +69,9 @@ const Checkout: React.FC = () => {
         </div>
         <h3 className="order-review-header">Your order</h3>
         <div className="order-review">
-          <table className="order-table">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  T-shirt with skirt – Pink&nbsp;&nbsp; <strong className="product-quantity">× 1</strong>
-                </td>
-                <td>$150.00</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>Total</th>
-                <td>$418.00</td>
-              </tr>
-            </tfoot>
-          </table>
+          <OrderProducts />
           <div className="payment">
-            <ul className="methods">
-              <li>
-                <input id="method-card" type="radio" name="payment_method" value="card" />
-                <label htmlFor="method-card">Card</label>
-                <div className="method-details">
-                  <p>
-                    Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <input id="method-cash" type="radio" name="payment_method" value="cash" />
-                <label htmlFor="method-cash">Cash on delivery</label>
-                <div className="method-details">
-                  <p>Pay with cash upon delivery.</p>
-                </div>
-              </li>
-            </ul>
+            <PaymentMethods />
             <div className="form-row place-order">
               <div className="terms-and-conditions">
                 <p>
