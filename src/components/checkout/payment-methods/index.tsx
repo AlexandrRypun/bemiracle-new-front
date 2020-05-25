@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import { PAYMENT_METHOD } from '../../../types/orders';
+import RadioInput from '../../input';
 
 import './styles.css';
 
@@ -13,15 +14,14 @@ const PaymentMethods: React.FC = () => {
   return (
     <ul className="payment-methods">
       <li>
-        <input
+        <RadioInput
           id="method-card"
-          type="radio"
           name="payment_method"
           value={PAYMENT_METHOD.ON_CARD}
-          defaultChecked
+          checked
           onChange={onMethodChanged(PAYMENT_METHOD.ON_CARD)}
+          label="Card"
         />
-        <label htmlFor="method-card">Card</label>
         {PAYMENT_METHOD.ON_CARD === method && (
           <div className="method-details">
             <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
@@ -29,14 +29,13 @@ const PaymentMethods: React.FC = () => {
         )}
       </li>
       <li>
-        <input
+        <RadioInput
           id="method-cash"
-          type="radio"
           name="payment_method"
           value={PAYMENT_METHOD.CASH}
           onChange={onMethodChanged(PAYMENT_METHOD.CASH)}
+          label="Cash on delivery"
         />
-        <label htmlFor="method-cash">Cash on delivery</label>
         {PAYMENT_METHOD.CASH === method && (
           <div className="method-details">
             <p>Pay with cash upon delivery.</p>
