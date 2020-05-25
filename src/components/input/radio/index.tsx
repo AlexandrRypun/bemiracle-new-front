@@ -10,7 +10,7 @@ type Props = {
   checked?: boolean;
   label?: string;
 };
-const Index: React.FC<Props> = ({ id, name, value, onChange, checked = false, label }) => {
+const Radio: React.FC<Props> = ({ id, name, value, onChange, checked = false, label }) => {
   const changeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value), [onChange]);
 
   return (
@@ -31,4 +31,4 @@ const Index: React.FC<Props> = ({ id, name, value, onChange, checked = false, la
   );
 };
 
-export default Index;
+export default Radio;

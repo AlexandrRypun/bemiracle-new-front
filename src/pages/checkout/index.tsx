@@ -2,6 +2,7 @@ import React from 'react';
 
 import OrderProducts from '../../components/checkout/order-products';
 import PaymentMethods from '../../components/checkout/payment-methods';
+import Checkbox from '../../components/input/checkbox';
 
 import './styles.css';
 
@@ -44,10 +45,13 @@ const Checkout: React.FC = () => {
             </div>
             <div className="account-fields">
               <p className="form-row">
-                <label>
-                  <input type="checkbox" name="createaccount" value="1" />
-                  <span>Create an account?</span>
-                </label>
+                <Checkbox
+                  id="create_account"
+                  name="create_account"
+                  value="1"
+                  label="Create an account?"
+                  onChange={() => {}}
+                />
               </p>
             </div>
           </div>

@@ -10,7 +10,7 @@ import { getImgSrc, getMainImgSrc } from '../../../utils/products';
 import { CartContext } from '../../../contexts/cart';
 
 import './styles.css';
-import InputNumber from '../../input-number';
+import InputNumber from '../../input/number';
 
 enum TAB {
   DESC = 'description',

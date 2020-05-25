@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import { PAYMENT_METHOD } from '../../../types/orders';
-import RadioInput from '../../input';
+import RadioInput from '../../input/radio';
 
 import './styles.css';
 

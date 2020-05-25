@@ -80,40 +80,6 @@
 .checkout-page .customer-details .account-fields {
     padding: 0 25px 35px 25px;
 }
-.checkout-page .customer-details .account-fields label span {
-    position: relative;
-    font-size: 18px;
-    color: #000;
-    padding-left: 26px;
-}
-.checkout-page .customer-details .account-fields label span::before {
-    content: "";
-    display: inline-block;
-    width: 17px;
-    height: 17px;
-    background-color: #e8e8e8;
-    border-radius: 50%;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-.checkout-page .customer-details .account-fields label input {
-    display: none;
-}
-.checkout-page .customer-details .account-fields label input:checked + span::before {
-    background-color: #fa8f47;
-}
-.checkout-page .customer-details .account-fields label input:checked + span::after {
-    content: "";
-    display: inline-block;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: #ffffff;
-    position: absolute;
-    left: 6px;
-    top: 12px;
-}
 .checkout-page .customer-details .additional-info {
     margin-top: 30px;
     background-color: #f6f6f6;

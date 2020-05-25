@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { CartProduct, IMG_SIZE } from '../../../types/products';
 import { getMainImgSrc } from '../../../utils/products';
-import InputNumber from '../../input-number';
+import InputNumber from '../../input/number';
 import { CartContext } from '../../../contexts/cart';
 import { getTranslation } from '../../../utils/common';
 
