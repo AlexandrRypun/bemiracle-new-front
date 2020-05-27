@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { Formik, Field } from 'formik';
+import { toast } from 'react-toastify';
 
 import OrderProducts from '../../components/checkout/order-products';
 import PaymentMethods from '../../components/checkout/payment-methods';
@@ -16,7 +17,10 @@ const Checkout: React.FC = () => {
 
   const submitHandler = useCallback(
     async values => {
-      await create(values);
+      try {
+        await create(values);
+        toast.success('Order has been successfully created!');
+      } catch (e) {}
     },
     [create],
   );
@@ -52,7 +56,13 @@ const Checkout: React.FC = () => {
                   <h3>Shipping details</h3>
                   <div className="shipping-fields">
                     <Input id="shipping-name" name="name" wrapperClasses="form-row-first" label="First name" required />
-                    <Input id="shipping-surname" name="surname" wrapperClasses="form-row-last" label="Last name" required />
+                    <Input
+                      id="shipping-surname"
+                      name="surname"
+                      wrapperClasses="form-row-last"
+                      label="Last name"
+                      required
+                    />
                     <div className="clear" />
                     <Input id="shipping-city" name="city" label="City" />
                     <Input id="shipping-phone" name="phone" label="Phone" required />

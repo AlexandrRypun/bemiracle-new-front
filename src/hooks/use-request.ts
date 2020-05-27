@@ -1,5 +1,7 @@
 import { useCallback, useState } from 'react';
 import { AnyObject } from '../types/common';
+import { toast } from 'react-toastify';
+
 import axios from '../services/axios';
 
 type Args = {
@@ -33,6 +35,9 @@ const useRequest = ({ endpoint, initIsFetching = false }: Args) => {
       } catch (e) {
         if (onError) {
           onError(e);
+        } else {
+          toast.error('Something went wrong!');
+          throw e;
         }
       } finally {
         setIsFetching(false);

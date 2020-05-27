@@ -1,5 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import Header from './components/header';
 import Footer from './components/footer';
@@ -40,6 +43,7 @@ const App: React.FC = () => (
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
           </Switch>
+          <ToastContainer />
         </div>
         <Footer />
       </>
