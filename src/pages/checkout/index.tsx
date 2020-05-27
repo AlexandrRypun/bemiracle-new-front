@@ -51,12 +51,12 @@ const Checkout: React.FC = () => {
                 <div className="shipping">
                   <h3>Shipping details</h3>
                   <div className="shipping-fields">
-                    <Input id="shipping-name" name="name" wrapperClasses="form-row-first" label="First name" />
-                    <Input id="shipping-surname" name="surname" wrapperClasses="form-row-last" label="Last name" />
+                    <Input id="shipping-name" name="name" wrapperClasses="form-row-first" label="First name" required />
+                    <Input id="shipping-surname" name="surname" wrapperClasses="form-row-last" label="Last name" required />
                     <div className="clear" />
                     <Input id="shipping-city" name="city" label="City" />
-                    <Input id="shipping-phone" name="phone" label="Phone" />
-                    <Input id="shipping-email" name="email" label="Email address" />
+                    <Input id="shipping-phone" name="phone" label="Phone" required />
+                    <Input id="shipping-email" name="email" label="Email address" required />
                   </div>
                 </div>
                 <div className="account-fields">

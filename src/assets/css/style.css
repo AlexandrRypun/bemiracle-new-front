@@ -4319,10 +4319,6 @@ a.backtotop:hover::before {
 .comment-form-rating label {
 	margin-right: 15px;
 }
-.required {
-	color: red;
-	font-weight: normal;
-}
 .comment-form .comment-form-author,
 .comment-form .comment-form-email,
 .comment-form .comment-reply-content {
