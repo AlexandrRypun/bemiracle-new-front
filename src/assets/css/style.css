@@ -15386,7 +15386,20 @@ body .akasha-mapper .text__area {
 .hidden {
 	display: none!important;
 }
-
+.clear {
+	clear: both;
+}
 li {
 	list-style: none;
+}
+form div.form-field {
+	margin-bottom: 30px;
+}
+form div.form-field label.error {
+	color: #E9604E;
+}
+form div.form-field .field-error{
+	margin-bottom: -2.2em;
+	color: #E9604E;
+	font-size: 12px;
 }

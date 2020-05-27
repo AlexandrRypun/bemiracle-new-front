@@ -16,7 +16,7 @@ const PaymentMethods: React.FC = () => {
       <li>
         <RadioInput
           id="method-card"
-          name="payment_method"
+          name="paymentMethod"
           value={PAYMENT_METHOD.ON_CARD}
           checked
           onChange={onMethodChanged(PAYMENT_METHOD.ON_CARD)}
@@ -31,7 +31,7 @@ const PaymentMethods: React.FC = () => {
       <li>
         <RadioInput
           id="method-cash"
-          name="payment_method"
+          name="paymentMethod"
           value={PAYMENT_METHOD.CASH}
           onChange={onMethodChanged(PAYMENT_METHOD.CASH)}
           label="Cash on delivery"
