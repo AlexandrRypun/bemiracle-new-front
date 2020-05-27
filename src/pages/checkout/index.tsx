@@ -7,13 +7,19 @@ import Checkbox from '../../components/input/checkbox';
 import Input from '../../components/input/formik-text';
 import { PAYMENT_METHOD } from '../../types/orders';
 import { OrderSchema } from './validationSchemas';
+import useRequest from '../../hooks/use-request';
 
 import './styles.css';
 
 const Checkout: React.FC = () => {
-  const submitHandler = useCallback(values => {
-    console.log(values);
-  }, []);
+  const { create } = useRequest({ endpoint: 'orders' });
+
+  const submitHandler = useCallback(
+    async values => {
+      await create(values);
+    },
+    [create],
+  );
 
   const initialValues = useMemo(
     () => ({

@@ -20,10 +20,10 @@ const Header: React.FC = () => {
   const { isMobile } = useContext(BrowserContext);
 
   const [categories, setCategories] = useState<Category[]>([]);
-  const { getData } = useRequest({ endpoint: 'categories' });
+  const { get } = useRequest({ endpoint: 'categories' });
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      const categories = await getData<Category[]>();
+      const categories = await get<Category[]>();
       setCategories(categories);
     };
     fetchData();

@@ -10,13 +10,26 @@ type Args = {
 const useRequest = ({ endpoint, initIsFetching = false }: Args) => {
   const [isFetching, setIsFetching] = useState<boolean>(initIsFetching);
 
-  const getData = useCallback(
-    async <T>(params?: AnyObject, onError?: (e: Error) => void): Promise<T> => {
+  const processRequest = useCallback(
+    async <T>(
+      method: 'get' | 'post' | 'patch' | 'delete',
+      data: AnyObject,
+      config: AnyObject,
+      onError?: (e: Error) => void,
+    ): Promise<T> => {
       setIsFetching(true);
-      let data = null;
+      let result = null;
+
+      const args: Array<any> = [endpoint];
+      if (['post', 'patch'].includes(method)) {
+        args.push(data);
+      }
+      args.push(config);
+
       try {
-        const response = await axios.get(endpoint, { params });
-        data = response.data;
+        // @ts-ignore
+        const response = await axios[method].call(axios, ...args);
+        result = response.data;
       } catch (e) {
         if (onError) {
           onError(e);
@@ -24,12 +37,26 @@ const useRequest = ({ endpoint, initIsFetching = false }: Args) => {
       } finally {
         setIsFetching(false);
       }
-      return data;
+      return result;
     },
     [endpoint],
   );
 
-  return { isFetching, getData };
+  const get = useCallback(
+    <T>(params: AnyObject = {}, onError?: (e: Error) => void): Promise<T> => {
+      return processRequest('get', {}, { params }, onError);
+    },
+    [endpoint],
+  );
+
+  const create = useCallback(
+    <T>(params: T, onError?: (e: Error) => void): Promise<T> => {
+      return processRequest('post', params, {}, onError);
+    },
+    [endpoint],
+  );
+
+  return { isFetching, get, create };
 };
 
 export default useRequest;

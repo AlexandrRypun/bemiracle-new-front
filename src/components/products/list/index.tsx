@@ -60,10 +60,10 @@ const ProductsList: React.FC<Props> = ({ params }) => {
     ],
     [],
   );
-  const { isFetching, getData } = useRequest({ endpoint: 'products' });
+  const { isFetching, get } = useRequest({ endpoint: 'products' });
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      const response = await getData<GetManyResponse<Product>>(
+      const response = await get<GetManyResponse<Product>>(
         {
           ...params,
           take: filters.perPage,

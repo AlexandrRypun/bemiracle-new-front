@@ -35,10 +35,10 @@ const ProductView: React.FC<Props> = ({ productId }) => {
   }, [product, inCart]);
 
   const endpoint = useMemo(() => `products/${productId}`, [productId]);
-  const { isFetching, getData } = useRequest({ endpoint, initIsFetching: true });
+  const { isFetching, get } = useRequest({ endpoint, initIsFetching: true });
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getData<Product>();
+      const response = await get<Product>();
       setProduct(response);
     };
     fetchData();
