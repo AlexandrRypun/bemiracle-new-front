@@ -1,8 +1,6 @@
 .product-view {
     display: flex;
     flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
 }
 .product-view .product-title {
     font-size: 24px;
@@ -107,8 +105,11 @@
 .product-view .product-slider .slick-track {
     max-height: 336px;
 }
+.product-view .product-slider .flex-control-nav:not(.slick-vertical) .slick-track {
+    display: flex;
+}
 .product-view .product-slider .flex-control-nav .slick-arrow.slick-prev {
-    margin-bottom: 3px;
+    margin-bottom: 8px;
 }
 .product-view .product-slider .flex-control-nav .slick-arrow.slick-next {
     border-radius: 0 0 3px 3px;
@@ -123,7 +124,7 @@
     content: "\f107";
 }
 .product-slide-icon {
-    padding: 5px 0;
+    padding-bottom: 5px;
 }
 .product-view .product-slider .flex-control-nav .slick-slide {
     padding-left: 5px;

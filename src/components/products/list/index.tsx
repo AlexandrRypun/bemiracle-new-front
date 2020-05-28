@@ -84,7 +84,7 @@ const ProductsList: React.FC<Props> = ({ params }) => {
   }, [params, filters, get]);
 
   return (
-    <div className="product-list row col-md-12">
+    <div className="product-list">
       <div className="product-list-control">
         <SelectBox
           options={sortingOptions}

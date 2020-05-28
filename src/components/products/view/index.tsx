@@ -117,6 +117,7 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                         settings: {
                           vertical: false,
                           slidesToShow,
+                          variableWidth: true,
                           prevArrow: <span className="fa fa-angle-left prev" />,
                           nextArrow: <span className="fa fa-angle-right next" />,
                         },

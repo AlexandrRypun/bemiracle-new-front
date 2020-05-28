@@ -16,16 +16,16 @@ import BrowserProvider from './contexts/browser';
 import CartProvider from './contexts/cart';
 
 import './assets/css/bootstrap.min.css';
-import './assets/css/animate.css';
-import './assets/css/chosen.min.css';
+// import './assets/css/animate.css';
+// import './assets/css/chosen.min.css';
 import './assets/css/font-awesome.min.css';
-import './assets/css/jquery.scrollbar.css';
-import './assets/css/lightbox.min.css';
-import './assets/css/magnific-popup.css';
+// import './assets/css/jquery.scrollbar.css';
+// import './assets/css/lightbox.min.css';
+// import './assets/css/magnific-popup.css';
 import './assets/css/slick.min.css';
 import './assets/fonts/flaticon.css';
 import './assets/css/megamenu.css';
-import './assets/css/dreaming-attribute.css';
+// import './assets/css/dreaming-attribute.css';
 import './assets/css/style.css';
 import './index.css';
 
