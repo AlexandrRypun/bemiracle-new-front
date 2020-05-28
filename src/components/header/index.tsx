@@ -27,7 +27,7 @@ const Header: React.FC = () => {
       setCategories(categories);
     };
     fetchData();
-  }, [setCategories]);
+  }, [get, setCategories]);
 
   const [mobileMenuOpened, setMobileMenuOpened] = useState<boolean>(false);
   const [subMenuAlias, setSubMenuAlias] = useState<SubMenus | null>(null);
@@ -63,7 +63,7 @@ const Header: React.FC = () => {
         setSubMenuContent(null);
       }, 200);
     }
-  }, [subMenuAlias]);
+  }, [getSubMenuContent, subMenuAlias]);
 
   const history = useHistory();
   useEffect(() => {
@@ -135,29 +135,6 @@ const Header: React.FC = () => {
                             <span className="flaticon-magnifying-glass-1"></span>
                           </a>
                         </div>
-                        <div className="block-search">
-                          <form
-                            role="search"
-                            method="get"
-                            className="form-search block-search-form akasha-live-search-form"
-                          >
-                            <div className="form-content search-box results-search">
-                              <div className="inner">
-                                <input
-                                  autoComplete="off"
-                                  className="searchfield txt-livesearch input"
-                                  name="s"
-                                  value=""
-                                  placeholder="Search here..."
-                                  type="text"
-                                />
-                              </div>
-                            </div>
-                            <button type="submit" className="btn-submit">
-                              <span className="flaticon-magnifying-glass-1"></span>
-                            </button>
-                          </form>
-                        </div>
                       </div>
                       <div className="akasha-dropdown-close hidden">x</div>
                       <div className="menu-item block-user block-dreaming akasha-dropdown">
@@ -176,37 +153,11 @@ const Header: React.FC = () => {
           <div className="header-mobile">
             <div className="header-mobile-left">
               <div className="block-menu-bar">
-                <span className="menu-bar menu-toggle" onClick={() => setMobileMenuOpened(true)}>
+                <span className="menu-bar menu-toggle" onClick={(): void => setMobileMenuOpened(true)}>
                   <span />
                   <span />
                   <span />
                 </span>
-              </div>
-              <div className="header-search akasha-dropdown hidden">
-                <div className="header-search-inner" data-akasha="akasha-dropdown">
-                  <a href="#" className="link-dropdown block-link">
-                    <span className="flaticon-magnifying-glass-1"></span>
-                  </a>
-                </div>
-                <div className="block-search">
-                  <form role="search" method="get" className="form-search block-search-form akasha-live-search-form">
-                    <div className="form-content search-box results-search">
-                      <div className="inner">
-                        <input
-                          autoComplete="off"
-                          className="searchfield txt-livesearch input"
-                          name="s"
-                          value=""
-                          placeholder="Search here..."
-                          type="text"
-                        />
-                      </div>
-                    </div>
-                    <button type="submit" className="btn-submit">
-                      <span className="flaticon-magnifying-glass-1"></span>
-                    </button>
-                  </form>
-                </div>
               </div>
               <ul className="wpml-menu">
                 <li className="menu-item akasha-dropdown block-language">
@@ -250,11 +201,11 @@ const Header: React.FC = () => {
           </div>
           <div ref={ref} id="mobile-menu" className={`akasha-menu-clone-wrap ${mobileMenuOpened ? 'open' : ''}`}>
             <div className="akasha-menu-panels-actions-wrap">
-              {subMenuAlias ? <a className="akasha-menu-prev-panel" onClick={showSubMenu(null)} /> : null}
+              {subMenuContent ? <a className="akasha-menu-prev-panel" onClick={showSubMenu(null)} /> : null}
               <a
                 className="akasha-menu-close-btn akasha-menu-close-panels"
                 href="#"
-                onClick={() => setMobileMenuOpened(false)}
+                onClick={(): void => setMobileMenuOpened(false)}
               >
                 x
               </a>

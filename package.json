@@ -1,5 +1,5 @@
 {
-  "name": "front",
+  "name": "bemiracle",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,7 +31,9 @@
     "start": "PORT=3001 react-scripts start --no-cache",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/",
+    "lint:fix": "eslint --fix --ext .ts,.tsx src/"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -55,6 +57,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "0.0.0-33c3af284",
     "prettier": "^2.0.5"
   }
 }

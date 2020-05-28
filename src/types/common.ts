@@ -1,5 +1,7 @@
 export type AnyObject = {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   [name: string]: any;
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 };
 
 export type GetManyResponse<T> = {

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 import './styles.css';
 
-interface Props extends React.PropsWithChildren<any> {
+interface Props {
   opened: boolean;
 }
 
-const Canvas: React.FC<Props> = ({ children, opened = false }) => {
+const Canvas: React.FC<React.PropsWithChildren<Props>> = ({ children, opened = false }) => {
   const [isShown, setIsShown] = useState<boolean>(false);
   const [openedClass, setOpenedClass] = useState<boolean>(false);
   useEffect(() => {

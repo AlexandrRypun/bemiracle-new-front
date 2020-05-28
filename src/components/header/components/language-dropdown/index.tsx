@@ -21,7 +21,7 @@ const LANG_FLAGS = {
   [LANG.RU]: RU,
 };
 
-const LanguageDropdown: React.FC<React.ComponentProps<any>> = () => {
+const LanguageDropdown: React.FC = () => {
   const { isMobile } = useContext(BrowserContext);
   const { i18n } = useTranslation();
 
@@ -36,7 +36,7 @@ const LanguageDropdown: React.FC<React.ComponentProps<any>> = () => {
         {!isMobile && langName}
       </span>
     );
-  }, [i18n.language]);
+  }, [i18n.language, isMobile]);
 
   const content = useMemo(() => {
     const options: JSX.Element[] = [];
@@ -44,7 +44,12 @@ const LanguageDropdown: React.FC<React.ComponentProps<any>> = () => {
       if (lang !== i18n.language) {
         const Flag = LANG_FLAGS[lang];
         options.push(
-          <li onClick={() => i18n.changeLanguage(lang)}>
+          <li
+            key={lang}
+            onClick={(): void => {
+              i18n.changeLanguage(lang);
+            }}
+          >
             <span className="language">
               {<Flag />}
               {LANG_NAMES[lang]}
@@ -54,7 +59,9 @@ const LanguageDropdown: React.FC<React.ComponentProps<any>> = () => {
       }
     });
     return <ul>{options.map(option => option)}</ul>;
+    /* eslint-disable react-hooks/exhaustive-deps */
   }, [i18n.language]);
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   return <SlideDropdown element={element} DDContent={content} DDPositionX={isMobile ? 'right' : 'left'} />;
 };

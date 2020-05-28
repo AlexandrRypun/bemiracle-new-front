@@ -9,7 +9,7 @@ import { CartContext } from '../../../../contexts/cart';
 
 import './styles.css';
 
-const CartIcon: React.FC<React.ComponentProps<any>> = () => {
+const CartIcon: React.FC = () => {
   const { products, removeFromCart } = useContext(CartContext);
   const removeFromCartHandler = useCallback(
     (productId: number) => (e: MouseEvent): void => {
@@ -20,7 +20,7 @@ const CartIcon: React.FC<React.ComponentProps<any>> = () => {
   );
 
   const [opened, setOpened] = useState<boolean>(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const closeCartCanvas = useCallback(() => {
     if (opened) {
       setOpened(false);
@@ -31,9 +31,7 @@ const CartIcon: React.FC<React.ComponentProps<any>> = () => {
     onClickOutside: closeCartCanvas,
   });
   const history = useHistory();
-  useEffect(() => {
-    closeCartCanvas();
-  }, [history.location.key]);
+  useEffect(() => setOpened(false), [history.location.key]);
 
   return (
     <div className="block-minicart block-dreaming akasha-mini-cart akasha-dropdown cart-icon">

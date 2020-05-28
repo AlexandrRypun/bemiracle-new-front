@@ -3,7 +3,7 @@ import SlideDropdown from '../../../slide-dropdown';
 
 import './styles.css';
 
-const UserMenuDropdown: React.FC<React.ComponentProps<any>> = () => {
+const UserMenuDropdown: React.FC = () => {
   const element = (
     <span className="user-menu">
       <span className="flaticon-profile" />

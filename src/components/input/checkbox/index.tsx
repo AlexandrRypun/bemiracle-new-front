@@ -20,7 +20,7 @@ const Checkbox: React.FC<Props> = ({ id, name, value, onChange, checked = false,
       }
       onChange(e.target.value);
     },
-    [onChange],
+    [field, onChange],
   );
 
   return (

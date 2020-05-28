@@ -37,7 +37,7 @@ const ProductsList: React.FC<Props> = ({ params }) => {
         value: count,
         label: `Show ${count}`,
       })),
-    [constants.products.perPage],
+    [],
   );
   const sortingOptions = useMemo(
     () => [
@@ -81,7 +81,7 @@ const ProductsList: React.FC<Props> = ({ params }) => {
       });
     };
     fetchData();
-  }, [params, filters]);
+  }, [params, filters, get]);
 
   return (
     <div className="product-list row col-md-12">

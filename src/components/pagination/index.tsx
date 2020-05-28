@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 
 import { BrowserContext } from '../../contexts/browser';
 import './styles.css';
@@ -21,13 +21,8 @@ const Pagination: React.FC<Props> = ({ page, perPage, total, onPageChanged }) =>
       }
     }
     return pages;
-  }, [isMobile, page, total, perPage]);
-  const onPageClicked = useCallback(
-    pageNumber => () => {
-      onPageChanged(pageNumber);
-    },
-    [onPageChanged],
-  );
+  }, [isMobile, page, totalPages]);
+  const onPageClicked = useCallback(pageNumber => (): void => onPageChanged(pageNumber), [onPageChanged]);
   const [fromItem, toItem] = useMemo(() => {
     const from = (page - 1) * perPage + 1;
     const to = page * perPage;

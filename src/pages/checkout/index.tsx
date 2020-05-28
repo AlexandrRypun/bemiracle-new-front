@@ -76,7 +76,7 @@ const Checkout: React.FC = () => {
                       id="createAccount"
                       name="createAccount"
                       label="Create an account?"
-                      onChange={() => {}}
+                      onChange={(): void => {}}
                     />
                   </p>
                 </div>

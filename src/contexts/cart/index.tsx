@@ -40,35 +40,41 @@ const CartProvider: React.FC<React.PropsWithChildren<React.ReactNode>> = ({ chil
   const alreadyInCart = useCallback<AlreadyInCartF>((productId: number) => inCartQuantities[productId] || 0, [
     inCartQuantities,
   ]);
-  const addToCart = useCallback((product: Product, qty: number): void => {
-    const products = getStoredCartProducts();
-    const index = products.findIndex(({ id }) => product.id === id);
-    if (index === -1) {
-      products.push({ ...product, inCart: qty });
-    } else {
-      const newQty = products[index].inCart + qty;
-      products.splice(index, 1, {
-        ...products[index],
-        inCart: newQty > products[index].inStock ? products[index].inStock : newQty,
-      });
-    }
-    setProducts(products);
-  }, []);
-
-  const removeFromCart = useCallback((productId: number, qty?: number): void => {
-    const products = getStoredCartProducts();
-    const index = products.findIndex(({ id }) => productId === id);
-    const product = products[index];
-    if (index !== -1) {
-      const newQty = qty ? product.inCart - qty : 0;
-      if (newQty < 1) {
-        products.splice(index, 1);
+  const addToCart = useCallback(
+    (product: Product, qty: number): void => {
+      const products = getStoredCartProducts();
+      const index = products.findIndex(({ id }) => product.id === id);
+      if (index === -1) {
+        products.push({ ...product, inCart: qty });
       } else {
-        products.splice(index, 1, { ...product, inCart: newQty });
+        const newQty = products[index].inCart + qty;
+        products.splice(index, 1, {
+          ...products[index],
+          inCart: newQty > products[index].inStock ? products[index].inStock : newQty,
+        });
       }
-    }
-    setProducts(products);
-  }, []);
+      setProducts(products);
+    },
+    [getStoredCartProducts],
+  );
+
+  const removeFromCart = useCallback(
+    (productId: number, qty?: number): void => {
+      const products = getStoredCartProducts();
+      const index = products.findIndex(({ id }) => productId === id);
+      const product = products[index];
+      if (index !== -1) {
+        const newQty = qty ? product.inCart - qty : 0;
+        if (newQty < 1) {
+          products.splice(index, 1);
+        } else {
+          products.splice(index, 1, { ...product, inCart: newQty });
+        }
+      }
+      setProducts(products);
+    },
+    [getStoredCartProducts],
+  );
 
   return (
     <CartContext.Provider value={{ products, alreadyInCart, addToCart, removeFromCart }}>

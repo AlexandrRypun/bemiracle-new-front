@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
@@ -37,12 +37,12 @@ const ProductView: React.FC<Props> = ({ productId }) => {
   const endpoint = useMemo(() => `products/${productId}`, [productId]);
   const { isFetching, get } = useRequest({ endpoint, initIsFetching: true });
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (): Promise<void> => {
       const response = await get<Product>();
       setProduct(response);
     };
     fetchData();
-  }, []);
+  }, [get]);
 
   const changeQty = useCallback(
     (newQty: number): void => {
@@ -76,7 +76,7 @@ const ProductView: React.FC<Props> = ({ productId }) => {
   const slidesToShow = useMemo(() => {
     const imgQty = product ? product.images.length : 0;
     return imgQty < 2 ? 1 : imgQty === 2 ? 2 : 3;
-  }, [product?.images]);
+  }, [product]);
 
   return (
     <Loader isLoading={isFetching}>
@@ -88,7 +88,7 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                 <div className="product-slider akasha-product-gallery">
                   <Slider
                     asNavFor={slider2}
-                    ref={slider => setSlider1(slider || undefined)}
+                    ref={(slider): void => setSlider1(slider || undefined)}
                     arrows={false}
                     draggable={false}
                     fade={true}
@@ -102,7 +102,7 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                   </Slider>
                   <Slider
                     asNavFor={slider1}
-                    ref={slider => setSlider2(slider || undefined)}
+                    ref={(slider): void => setSlider2(slider || undefined)}
                     vertical={true}
                     slidesToShow={slidesToShow}
                     slidesToScroll={1}

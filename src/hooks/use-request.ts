@@ -1,28 +1,34 @@
 import { useCallback, useState } from 'react';
-import { AnyObject } from '../types/common';
+import { AxiosRequestConfig } from 'axios';
 import { toast } from 'react-toastify';
 
+import { AnyObject } from '../types/common';
 import axios from '../services/axios';
 
 type Args = {
   endpoint: string;
   initIsFetching?: boolean;
 };
+type Response = {
+  isFetching: boolean;
+  get: <T>(params?: AnyObject, onError?: (e: Error) => void) => Promise<T>;
+  create: <T>(params: T, onError?: (e: Error) => void) => Promise<T>;
+};
 
-const useRequest = ({ endpoint, initIsFetching = false }: Args) => {
+const useRequest = ({ endpoint, initIsFetching = false }: Args): Response => {
   const [isFetching, setIsFetching] = useState<boolean>(initIsFetching);
 
   const processRequest = useCallback(
     async <T>(
       method: 'get' | 'post' | 'patch' | 'delete',
       data: AnyObject,
-      config: AnyObject,
+      config: AxiosRequestConfig,
       onError?: (e: Error) => void,
     ): Promise<T> => {
       setIsFetching(true);
       let result = null;
 
-      const args: Array<any> = [endpoint];
+      const args: Array<string | AxiosRequestConfig | AnyObject> = [endpoint];
       if (['post', 'patch'].includes(method)) {
         args.push(data);
       }
@@ -51,14 +57,14 @@ const useRequest = ({ endpoint, initIsFetching = false }: Args) => {
     <T>(params: AnyObject = {}, onError?: (e: Error) => void): Promise<T> => {
       return processRequest('get', {}, { params }, onError);
     },
-    [endpoint],
+    [processRequest],
   );
 
   const create = useCallback(
     <T>(params: T, onError?: (e: Error) => void): Promise<T> => {
       return processRequest('post', params, {}, onError);
     },
-    [endpoint],
+    [processRequest],
   );
 
   return { isFetching, get, create };
