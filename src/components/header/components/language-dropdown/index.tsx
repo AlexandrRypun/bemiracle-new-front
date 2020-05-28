@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ReactComponent as EN } from '../../../../assets/images/en.svg';
@@ -23,6 +23,7 @@ const LANG_FLAGS = {
 
 const LanguageDropdown: React.FC = () => {
   const { isMobile } = useContext(BrowserContext);
+  const [closeTrigger, toggleCloseTrigger] = useState<boolean>(false);
   const { i18n } = useTranslation();
 
   const element = useMemo(() => {
@@ -48,6 +49,8 @@ const LanguageDropdown: React.FC = () => {
             key={lang}
             onClick={(): void => {
               i18n.changeLanguage(lang);
+              localStorage.setItem('lang', lang);
+              toggleCloseTrigger(!closeTrigger);
             }}
           >
             <span className="language">
@@ -63,7 +66,14 @@ const LanguageDropdown: React.FC = () => {
   }, [i18n.language]);
   /* eslint-enable react-hooks/exhaustive-deps */
 
-  return <SlideDropdown element={element} DDContent={content} DDPositionX={isMobile ? 'right' : 'left'} />;
+  return (
+    <SlideDropdown
+      element={element}
+      DDContent={content}
+      DDPositionX={isMobile ? 'right' : 'left'}
+      closeTrigger={closeTrigger}
+    />
+  );
 };
 
 export default LanguageDropdown;

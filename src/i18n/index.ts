@@ -4,9 +4,10 @@ import { initReactI18next } from 'react-i18next';
 import constants from '../configs/constants';
 import resources from './translations';
 
+const savedLanguage = localStorage.getItem('lang');
 i18n.use(initReactI18next).init({
   resources,
-  lng: constants.defaultLanguage,
+  lng: savedLanguage || constants.defaultLanguage,
 
   interpolation: {
     escapeValue: false,

@@ -129,13 +129,6 @@ const Header: React.FC = () => {
                           <LanguageDropdown />
                         </li>
                       </ul>
-                      <div className="header-search akasha-dropdown hidden">
-                        <div className="header-search-inner" data-akasha="akasha-dropdown">
-                          <a href="#" className="link-dropdown block-link">
-                            <span className="flaticon-magnifying-glass-1"></span>
-                          </a>
-                        </div>
-                      </div>
                       <div className="akasha-dropdown-close hidden">x</div>
                       <div className="menu-item block-user block-dreaming akasha-dropdown">
                         <UserMenuDropdown />
@@ -177,7 +170,7 @@ const Header: React.FC = () => {
                 <div className="meta-dreaming">
                   <div className="menu-item block-user block-dreaming akasha-dropdown">
                     <a className="block-link" href="#">
-                      <span className="flaticon-profile"></span>
+                      <span className="flaticon-profile" />
                     </a>
                     <ul className="sub-menu">
                       <li className="menu-item akasha-MyAccount-navigation-link akasha-MyAccount-navigation-link--orders">
