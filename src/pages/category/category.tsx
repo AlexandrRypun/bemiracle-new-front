@@ -72,6 +72,7 @@ const CategoryPage: React.FC = () => {
   const { isFetching, get } = useRequest({ endpoint: 'products' });
   useEffect(() => {
     setProducts(initialState);
+    setFilters(initialFilters);
   }, [match.params.categoryId]);
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
