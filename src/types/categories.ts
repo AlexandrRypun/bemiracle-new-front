@@ -1,8 +1,7 @@
-import { EntityWithTranslations, LANG } from './common';
+import { EntityWithTranslations, Translation } from './common';
 
-export interface CategoryTranslation {
+export interface CategoryTranslation extends Translation {
   id: number;
-  lang: LANG;
   name: string;
 }
 

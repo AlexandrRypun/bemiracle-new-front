@@ -1,4 +1,4 @@
-import { EntityWithTranslations, LANG } from './common';
+import { EntityWithTranslations, LANG, Translation } from './common';
 import { Category } from './categories';
 
 export interface ProductImage {
@@ -9,9 +9,8 @@ export interface ProductImage {
   productId: number;
 }
 
-export interface ProductTranslation {
+export interface ProductTranslation extends Translation {
   id: number;
-  lang: LANG;
   name: string;
   description: string;
   shortDescription: string;

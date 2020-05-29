@@ -1,11 +1,11 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { CartProduct, IMG_SIZE } from '../../../types/products';
+import { CartProduct, IMG_SIZE, ProductTranslation } from '../../../types/products';
 import { getMainImgSrc } from '../../../utils/products';
 import InputNumber from '../../input/number';
 import { CartContext } from '../../../contexts/cart';
-import { getTranslation } from '../../../utils/common';
+import useEntityTranslation from '../../../hooks/use-entity-translation';
 
 import './styles.css';
 
@@ -31,7 +31,7 @@ const Product: React.FC<Props> = ({ product }) => {
 
   const onRemove = useCallback((): void => removeFromCart(product.id), [removeFromCart, product.id]);
 
-  const prodName = useMemo(() => (product ? getTranslation('name', product) : ''), [product]);
+  const translation = useEntityTranslation<ProductTranslation>(product);
 
   return (
     <tr className="cart-product-row">
@@ -42,11 +42,11 @@ const Product: React.FC<Props> = ({ product }) => {
       </td>
       <td className="image">
         <Link to={`/products/${product.id}`}>
-          <img src={getMainImgSrc(product, IMG_SIZE.THUMBNAIL)} alt={prodName} />
+          <img src={getMainImgSrc(product, IMG_SIZE.THUMBNAIL)} alt={translation.name} />
         </Link>
       </td>
       <td className="name">
-        <Link to={`/products/${product.id}`}>{prodName}</Link>
+        <Link to={`/products/${product.id}`}>{translation.name}</Link>
       </td>
       <td className="price">${product.price}</td>
       <td className="quantity">

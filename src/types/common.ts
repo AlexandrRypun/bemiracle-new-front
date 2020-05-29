@@ -15,6 +15,9 @@ export enum LANG {
   RU = 'ru',
 }
 
+export interface Translation extends AnyObject {
+  lang: LANG;
+}
 export interface EntityWithTranslations {
-  translations: AnyObject[];
+  translations: Array<Translation>;
 }

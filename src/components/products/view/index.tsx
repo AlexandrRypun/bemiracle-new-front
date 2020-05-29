@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import useRequest from '../../../hooks/use-request';
-import { IMG_SIZE, Product } from '../../../types/products';
-import { getTranslation } from '../../../utils/common';
+import { IMG_SIZE, Product, ProductTranslation } from '../../../types/products';
 import Loader from '../../loader';
 import { getImgSrc, getMainImgSrc } from '../../../utils/products';
 import { CartContext } from '../../../contexts/cart';
+import InputNumber from '../../input/number';
+import useEntityTranslation from '../../../hooks/use-entity-translation';
+import { CategoryTranslation } from '../../../types/categories';
 
 import './styles.css';
-import InputNumber from '../../input/number';
 
 enum TAB {
   DESC = 'description',
@@ -56,22 +57,23 @@ const ProductView: React.FC<Props> = ({ productId }) => {
     },
     [setQty, product, maxAddToCart],
   );
+
+  const translation = useEntityTranslation<ProductTranslation>(product);
+  const categoryTranslation = useEntityTranslation<CategoryTranslation>(product ? product.category : null);
   const getTabContent = useCallback((): React.ReactElement => {
     let content = <></>;
     if (product) {
       switch (activeTab) {
         case TAB.DESC:
-          content = <div className="product-tab-description">{getTranslation('description', product)}</div>;
+          content = <div className="product-tab-description">{translation.description}</div>;
           break;
         case TAB.INGR:
-          content = <div className="product-tab-ingredients">{getTranslation('ingredients', product)}</div>;
+          content = <div className="product-tab-ingredients">{translation.ingredients}</div>;
           break;
       }
     }
     return content;
-  }, [activeTab, product]);
-
-  const prodName = useMemo(() => (product ? getTranslation('name', product) : ''), [product]);
+  }, [translation, activeTab, product]);
 
   const slidesToShow = useMemo(() => {
     const imgQty = product ? product.images.length : 0;
@@ -95,9 +97,9 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                     className="flex-viewport"
                   >
                     {product.images.length > 0 ? (
-                      product.images.map(image => <img key={image.id} alt={prodName} src={getImgSrc(image)} />)
+                      product.images.map(image => <img key={image.id} alt={translation.name} src={getImgSrc(image)} />)
                     ) : (
-                      <img alt={prodName} src={getMainImgSrc(product)} />
+                      <img alt={translation.name} src={getMainImgSrc(product)} />
                     )}
                   </Slider>
                   <Slider
@@ -130,14 +132,14 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                           key={image.id}
                           src={getImgSrc(image, IMG_SIZE.THUMBNAIL)}
                           className="product-slide-icon"
-                          alt={prodName}
+                          alt={translation.name}
                         />
                       ))
                     ) : (
                       <img
                         src={getMainImgSrc(product, IMG_SIZE.THUMBNAIL)}
                         className="product-slide-icon"
-                        alt={prodName}
+                        alt={translation.name}
                       />
                     )}
                   </Slider>
@@ -149,7 +151,7 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                     <span className="text">New</span>
                   </span>
                 </div>
-                <h1 className="product-title">{prodName}</h1>
+                <h1 className="product-title">{translation.name}</h1>
                 <p className="price">${product.price}</p>
                 <p className={`stock ${product.inStock > 0 ? 'in' : 'out'}-stock`}>
                   Availability: <span>{product.inStock > 0 ? 'In stock' : 'Not available'}</span>
@@ -157,7 +159,7 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                 <p className="already-in-cart">
                   Already in cart: <span>{inCart}</span>
                 </p>
-                <div className="product-short-description">{getTranslation('shortDescription', product)}</div>
+                <div className="product-short-description">{translation.shortDescription}</div>
                 <div className="cart">
                   <div className="quantity">
                     <InputNumber value={qty} changeHandler={changeQty} />
@@ -176,7 +178,7 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                 <div className="product_meta">
                   <span className="product-category">
                     Category:&nbsp;
-                    <Link to={`/category/${product.category.id}`}>{getTranslation('name', product.category)}</Link>
+                    <Link to={`/category/${product.category.id}`}>{categoryTranslation.name}</Link>
                   </span>
                 </div>
               </div>
