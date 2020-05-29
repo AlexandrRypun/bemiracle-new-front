@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import { AnyObject } from '../types/common';
 import axios from '../services/axios';
@@ -17,6 +18,7 @@ type Response = {
 
 const useRequest = ({ endpoint, initIsFetching = false }: Args): Response => {
   const [isFetching, setIsFetching] = useState<boolean>(initIsFetching);
+  const { t } = useTranslation();
 
   const processRequest = useCallback(
     async <T>(
@@ -42,7 +44,7 @@ const useRequest = ({ endpoint, initIsFetching = false }: Args): Response => {
         if (onError) {
           onError(e);
         } else {
-          toast.error('Something went wrong!');
+          toast.error(t('common.messages.smthWrong'));
           throw e;
         }
       } finally {

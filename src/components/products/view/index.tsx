@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+import { useTranslation } from 'react-i18next';
 
 import useRequest from '../../../hooks/use-request';
 import { IMG_SIZE, Product, ProductTranslation } from '../../../types/products';
@@ -27,6 +28,8 @@ const ProductView: React.FC<Props> = ({ productId }) => {
   const [activeTab, setActiveTab] = useState<TAB>(TAB.DESC);
   const [slider1, setSlider1] = useState<Slider | undefined>();
   const [slider2, setSlider2] = useState<Slider | undefined>();
+
+  const { t } = useTranslation();
 
   const { alreadyInCart, addToCart } = useContext(CartContext);
   const inCart = useMemo(() => (product ? alreadyInCart(product.id) : 0), [alreadyInCart, product]);
@@ -154,10 +157,11 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                 <h1 className="product-title">{translation.name}</h1>
                 <p className="price">${product.price}</p>
                 <p className={`stock ${product.inStock > 0 ? 'in' : 'out'}-stock`}>
-                  Availability: <span>{product.inStock > 0 ? 'In stock' : 'Not available'}</span>
+                  {t('product.view.availability')}:&nbsp;
+                  <span>{t(`product.view.${product.inStock > 0 ? 'available' : 'notAvailable'}`)}</span>
                 </p>
                 <p className="already-in-cart">
-                  Already in cart: <span>{inCart}</span>
+                  {t('product.view.inCart')}: <span>{inCart}</span>
                 </p>
                 <div className="product-short-description">{translation.shortDescription}</div>
                 <div className="cart">
@@ -172,12 +176,12 @@ const ProductView: React.FC<Props> = ({ productId }) => {
                       }
                     }}
                   >
-                    Add to cart
+                    {t('product.view.addToCart')}
                   </button>
                 </div>
                 <div className="product_meta">
                   <span className="product-category">
-                    Category:&nbsp;
+                    {t('product.view.category')}:&nbsp;
                     <Link to={`/category/${product.category.id}`}>{categoryTranslation.name}</Link>
                   </span>
                 </div>
@@ -187,10 +191,10 @@ const ProductView: React.FC<Props> = ({ productId }) => {
           <div className="product-data-tabs">
             <ul className="tabs-list">
               <li className={`tab-title ${activeTab === TAB.DESC ? 'active' : ''}`}>
-                <span onClick={(): void => setActiveTab(TAB.DESC)}>Description</span>
+                <span onClick={(): void => setActiveTab(TAB.DESC)}>{t('product.view.description')}</span>
               </li>
               <li className={`tab-title ${activeTab === TAB.INGR ? 'active' : ''}`}>
-                <span onClick={(): void => setActiveTab(TAB.INGR)}>Ingredients</span>
+                <span onClick={(): void => setActiveTab(TAB.INGR)}>{t('product.view.ingredients')}</span>
               </li>
             </ul>
             <div className="tab-content">{getTabContent()}</div>
