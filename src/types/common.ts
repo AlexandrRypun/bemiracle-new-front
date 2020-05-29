@@ -18,6 +18,12 @@ export enum LANG {
 export interface Translation extends AnyObject {
   lang: LANG;
 }
+
 export interface EntityWithTranslations {
   translations: Array<Translation>;
+}
+
+export interface Breadcrumb {
+  label: string;
+  to?: string;
 }

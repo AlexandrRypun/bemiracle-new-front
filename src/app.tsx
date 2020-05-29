@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 
+import Breadcrumbs from './components/breadcrumbs';
 import Header from './components/header';
 import Footer from './components/footer';
 import HomePage from './pages/homepage/homepage';
@@ -14,6 +15,7 @@ import Cart from './pages/cart';
 import Checkout from './pages/checkout';
 import BrowserProvider from './contexts/browser';
 import CartProvider from './contexts/cart';
+import BreadcrumbsProvider from './contexts/breadcrumbs';
 
 import './assets/css/bootstrap.min.css';
 // import './assets/css/animate.css';
@@ -32,21 +34,24 @@ import './index.css';
 const App: React.FC = () => (
   <BrowserProvider>
     <CartProvider>
-      <>
-        <Header />
-        <div className="main-container container">
-          <Switch>
-            <Route path="/" exact component={HomePage} />
-            <Route path="/about-us" component={AboutUs} />
-            <Route path="/category/:categoryId" component={Category} />
-            <Route path="/products/:productId" component={Product} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/checkout" component={Checkout} />
-          </Switch>
-          <ToastContainer />
-        </div>
-        <Footer />
-      </>
+      <BreadcrumbsProvider>
+        <>
+          <Header />
+          <Breadcrumbs />
+          <div className="main-container container">
+            <Switch>
+              <Route path="/" exact component={HomePage} />
+              <Route path="/about-us" component={AboutUs} />
+              <Route path="/category/:categoryId" component={Category} />
+              <Route path="/products/:productId" component={Product} />
+              <Route path="/cart" component={Cart} />
+              <Route path="/checkout" component={Checkout} />
+            </Switch>
+            <ToastContainer />
+          </div>
+          <Footer />
+        </>
+      </BreadcrumbsProvider>
     </CartProvider>
   </BrowserProvider>
 );

@@ -4405,7 +4405,7 @@ a.backtotop:hover::before {
 6.1 BANNER AND TITLE PAGE
 ========================================================================== */
 .main-container {
-	padding-top: 20px;
+	padding-top: 30px;
 	padding-bottom: 20px;
 }
 .banner-wrapper-inner {
@@ -6783,6 +6783,10 @@ body.admin-bar #yith-quick-view-modal {
 	}
 }
 @media (max-width: 991px) {
+	.main-container {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
 	.product-item.list .product-info,
 	.product-item.list .product-thumb {
 		width: 50%;
@@ -15400,4 +15404,14 @@ form div.form-field .field-error{
 .main-container .row {
 	margin-left: 0;
 	margin-right: 0;
+}
+.no-data {
+	text-align: center;
+	font-size: 20px;
+	font-weight: 400;
+}
+@media (max-width: 991px) {
+	.no-data {
+		font-size: 16px;
+	}
 }

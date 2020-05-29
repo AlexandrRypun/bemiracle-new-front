@@ -165,3 +165,8 @@
         content: "\f105";
     }
 }
+@media (max-width: 345px) {
+    .product-view .product-add-to-cart {
+        min-width: 160px;
+    }
+}

@@ -1,0 +1,28 @@
+.breadcrumbs-block {
+    background-color: #f4f4f4;
+}
+.breadcrumbs-block nav {
+    color: #666666;
+    width: 1800px;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 20px auto;
+    text-align: left;
+    font-weight: 600;
+}
+.breadcrumbs-block nav i {
+    padding-left: 11px;
+    padding-right: 11px;
+    color: #868686;
+}
+
+@media (max-width: 991px) {
+    .breadcrumbs-block nav {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .breadcrumbs-block nav {
+        font-size: 12px;
+    }
+}

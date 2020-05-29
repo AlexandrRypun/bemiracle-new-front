@@ -5,17 +5,17 @@ import './styles.css';
 
 type Props = {
   isLoading: boolean;
+  showChildren?: boolean;
 };
-const Loader: React.FC<React.PropsWithChildren<Props>> = ({ isLoading, children = null }) => {
+const Loader: React.FC<React.PropsWithChildren<Props>> = ({ isLoading, children = null, showChildren = false }) => {
   return (
     <>
-      {isLoading ? (
+      {isLoading && (
         <div className="loader-overlay">
           <img src={loader} alt="Loading..." />
         </div>
-      ) : (
-        children
       )}
+      {(!isLoading || showChildren) && children}
     </>
   );
 };

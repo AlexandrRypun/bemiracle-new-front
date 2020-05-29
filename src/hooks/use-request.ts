@@ -52,7 +52,7 @@ const useRequest = ({ endpoint, initIsFetching = false }: Args): Response => {
       }
       return result;
     },
-    [endpoint],
+    [t, endpoint],
   );
 
   const get = useCallback(

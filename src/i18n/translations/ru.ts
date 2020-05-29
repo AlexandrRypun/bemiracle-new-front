@@ -5,6 +5,9 @@ const translation = {
     messages: {
       smthWrong: 'Упс! Что-то пошло не так!',
     },
+    breadcrumbs: {
+      home: 'Главная',
+    },
   },
   product: {
     view: {
