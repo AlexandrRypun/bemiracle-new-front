@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef, useState, MouseEvent } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState, MouseEvent, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import Canvas from '../../../canvas';
@@ -11,6 +11,8 @@ import './styles.css';
 
 const CartIcon: React.FC = () => {
   const { products, removeFromCart } = useContext(CartContext);
+  const total = useMemo(() => products.reduce((sum, product) => sum + product.price * product.quantity, 0), [products]);
+
   const removeFromCartHandler = useCallback(
     (productId: number) => (e: MouseEvent): void => {
       e.nativeEvent.stopImmediatePropagation();
@@ -49,14 +51,12 @@ const CartIcon: React.FC = () => {
             </h3>
             <ul className="akasha-mini-cart cart_list product_list_widget products-list">
               {products.map(product => (
-                <CartItem key={product.id} product={product} removeFromCart={removeFromCartHandler} />
+                <CartItem key={product.product.id} product={product} removeFromCart={removeFromCartHandler} />
               ))}
             </ul>
             <p className="akasha-mini-cart__total total">
               <strong>Subtotal:</strong>
-              <span className="akasha-Price-amount amount">
-                <span className="akasha-Price-currencySymbol">$</span>418.00
-              </span>
+              <span className="akasha-Price-amount amount">${total}</span>
             </p>
             <p className="akasha-mini-cart__buttons buttons">
               <Link to="/cart" className="button akasha-forward">

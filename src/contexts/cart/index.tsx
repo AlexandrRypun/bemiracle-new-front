@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
-import { CartProduct, Product } from '../../types/products';
+import { Product } from '../../types/products';
+import { OrderProduct } from '../../types/orders';
 
 type ProductsQuantities = { [id: string]: number };
 type AlreadyInCartF = (id: number) => number;
 type ContextProps = {
-  products: CartProduct[];
+  products: OrderProduct[];
   alreadyInCart: AlreadyInCartF;
   addToCart: (product: Product, qty: number) => void;
   removeFromCart: (id: number, qty?: number) => void;
@@ -19,11 +20,11 @@ const initialValue = {
 export const CartContext = React.createContext<ContextProps>(initialValue);
 
 const CartProvider: React.FC<React.PropsWithChildren<React.ReactNode>> = ({ children }) => {
-  const getStoredCartProducts = useCallback((): CartProduct[] => {
+  const getStoredCartProducts = useCallback((): OrderProduct[] => {
     const storedCartProducts = localStorage.getItem('cartProducts');
     return storedCartProducts ? JSON.parse(storedCartProducts) : [];
   }, []);
-  const [products, setProducts] = useState<CartProduct[]>(getStoredCartProducts());
+  const [products, setProducts] = useState<OrderProduct[]>(getStoredCartProducts());
 
   useEffect(() => {
     localStorage.setItem('cartProducts', JSON.stringify(products));
@@ -32,7 +33,7 @@ const CartProvider: React.FC<React.PropsWithChildren<React.ReactNode>> = ({ chil
   const inCartQuantities = useMemo<ProductsQuantities>(() => {
     const productsQty: ProductsQuantities = {};
     products.forEach(product => {
-      productsQty[product.id] = product.inCart;
+      productsQty[product.product.id] = product.quantity;
     });
     return productsQty;
   }, [products]);
@@ -43,14 +44,14 @@ const CartProvider: React.FC<React.PropsWithChildren<React.ReactNode>> = ({ chil
   const addToCart = useCallback(
     (product: Product, qty: number): void => {
       const products = getStoredCartProducts();
-      const index = products.findIndex(({ id }) => product.id === id);
+      const index = products.findIndex(({ product: { id } }) => product.id === id);
       if (index === -1) {
-        products.push({ ...product, inCart: qty });
+        products.push({ product, quantity: qty, price: product.price });
       } else {
-        const newQty = products[index].inCart + qty;
+        const newQty = products[index].quantity + qty;
         products.splice(index, 1, {
           ...products[index],
-          inCart: newQty > products[index].inStock ? products[index].inStock : newQty,
+          quantity: newQty > products[index].product.inStock ? products[index].product.inStock : newQty,
         });
       }
       setProducts(products);
@@ -61,14 +62,14 @@ const CartProvider: React.FC<React.PropsWithChildren<React.ReactNode>> = ({ chil
   const removeFromCart = useCallback(
     (productId: number, qty?: number): void => {
       const products = getStoredCartProducts();
-      const index = products.findIndex(({ id }) => productId === id);
+      const index = products.findIndex(({ product: { id } }) => productId === id);
       const product = products[index];
       if (index !== -1) {
-        const newQty = qty ? product.inCart - qty : 0;
+        const newQty = qty ? product.quantity - qty : 0;
         if (newQty < 1) {
           products.splice(index, 1);
         } else {
-          products.splice(index, 1, { ...product, inCart: newQty });
+          products.splice(index, 1, { ...product, quantity: newQty });
         }
       }
       setProducts(products);

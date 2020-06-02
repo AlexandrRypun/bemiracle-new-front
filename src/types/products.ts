@@ -28,10 +28,6 @@ export interface Product extends EntityWithTranslations {
   category: Category;
 }
 
-export interface CartProduct extends Product {
-  inCart: number;
-}
-
 export enum IMG_SIZE {
   ORIGIN = 'origin',
   TEASER = 'teaser',

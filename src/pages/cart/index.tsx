@@ -8,7 +8,7 @@ import './styles.css';
 
 const Cart: React.FC = () => {
   const { products } = useContext(CartContext);
-  const total = useMemo(() => products.reduce((sum, product) => sum + product.price * product.inCart, 0), [products]);
+  const total = useMemo(() => products.reduce((sum, product) => sum + product.price * product.quantity, 0), [products]);
 
   return (
     <div className="cart-page">

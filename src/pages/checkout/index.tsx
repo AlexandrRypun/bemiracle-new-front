@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import { Formik, Field } from 'formik';
 import { toast } from 'react-toastify';
 
@@ -9,10 +9,13 @@ import Input from '../../components/input/formik-text';
 import { PAYMENT_METHOD } from '../../types/orders';
 import { OrderSchema } from './validationSchemas';
 import useRequest from '../../hooks/use-request';
+import { CartContext } from '../../contexts/cart';
 
 import './styles.css';
 
 const Checkout: React.FC = () => {
+  const { products } = useContext(CartContext);
+
   const { create } = useRequest({ endpoint: 'orders' });
 
   const submitHandler = useCallback(
@@ -27,16 +30,18 @@ const Checkout: React.FC = () => {
 
   const initialValues = useMemo(
     () => ({
-      name: '',
-      surname: '',
-      city: '',
-      phone: '',
-      email: '',
+      customerName: '',
+      customerSurname: '',
+      customerCity: '',
+      customerNovaPoshtaDep: '',
+      customerPhone: '',
+      customerEmail: '',
       createAccount: false,
       comments: '',
       paymentMethod: PAYMENT_METHOD.ON_CARD,
+      products,
     }),
-    [],
+    [products],
   );
 
   return (
@@ -55,18 +60,25 @@ const Checkout: React.FC = () => {
                 <div className="shipping">
                   <h3>Shipping details</h3>
                   <div className="shipping-fields">
-                    <Input id="shipping-name" name="name" wrapperClasses="form-row-first" label="First name" required />
+                    <Input
+                      id="shipping-name"
+                      name="customerName"
+                      wrapperClasses="form-row-first"
+                      label="First name"
+                      required
+                    />
                     <Input
                       id="shipping-surname"
-                      name="surname"
+                      name="customerSurname"
                       wrapperClasses="form-row-last"
                       label="Last name"
                       required
                     />
                     <div className="clear" />
-                    <Input id="shipping-city" name="city" label="City" />
-                    <Input id="shipping-phone" name="phone" label="Phone" required />
-                    <Input id="shipping-email" name="email" label="Email address" required />
+                    <Input id="shipping-city" name="customerCity" label="City" required />
+                    <Input id="shipping-np" name="customerNovaPoshtaDep" label="Nova Poshta Dep" required />
+                    <Input id="shipping-phone" name="customerPhone" label="Phone" required />
+                    <Input id="shipping-email" name="customerEmail" label="Email address" />
                   </div>
                 </div>
                 <div className="account-fields">
@@ -100,7 +112,7 @@ const Checkout: React.FC = () => {
             </div>
             <h3 className="order-review-header">Your order</h3>
             <div className="order-review">
-              <OrderProducts />
+              <OrderProducts products={products} />
               <div className="payment">
                 <Field component="div" name="paymentMethods">
                   <PaymentMethods />
