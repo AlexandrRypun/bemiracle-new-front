@@ -15410,6 +15410,14 @@ form div.form-field .field-error{
 	font-size: 20px;
 	font-weight: 400;
 }
+form div.form-field input {
+	width: 100%;
+	height: 52px;
+	line-height: 50px;
+	background-color: #fff;
+	border-color: #fff;
+}
+
 @media (max-width: 991px) {
 	.no-data {
 		font-size: 16px;

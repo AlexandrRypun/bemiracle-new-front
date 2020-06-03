@@ -1,0 +1,15 @@
+button.form-button {
+    height: 52px;
+    line-height: 52px;
+    border-radius: 0;
+    background-color: #1b1b1b;
+    display: inline-block;
+    padding: 0 15px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+button.form-button:hover {
+    background-color: #fa8f47;
+}

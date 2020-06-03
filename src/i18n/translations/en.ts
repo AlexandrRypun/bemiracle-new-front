@@ -24,6 +24,12 @@ const translation = {
   checkout: {
     placeOrder: 'Place order',
   },
+  signIn: {
+    messages: {
+      wrongCred: 'Email or password is wrong',
+      hiUser: 'Hi, {{name}}',
+    },
+  },
 };
 
 export default { translation };

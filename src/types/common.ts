@@ -27,3 +27,8 @@ export interface Breadcrumb {
   label: string;
   to?: string;
 }
+
+export interface AuthTokens {
+  accessToken: string;
+  refreshToken: string;
+}

@@ -12,8 +12,8 @@ type Args = {
 };
 type Response = {
   isFetching: boolean;
-  get: <T>(params?: AnyObject, onError?: (e: Error) => void) => Promise<T>;
-  create: <T>(params: T, onError?: (e: Error) => void) => Promise<T>;
+  get: <T>(params?: AnyObject) => Promise<T>;
+  create: <T>(params: T) => Promise<T>;
 };
 
 const useRequest = ({ endpoint, initIsFetching = false }: Args): Response => {
@@ -21,12 +21,7 @@ const useRequest = ({ endpoint, initIsFetching = false }: Args): Response => {
   const { t } = useTranslation();
 
   const processRequest = useCallback(
-    async <T>(
-      method: 'get' | 'post' | 'patch' | 'delete',
-      data: AnyObject,
-      config: AxiosRequestConfig,
-      onError?: (e: Error) => void,
-    ): Promise<T> => {
+    async <T>(method: 'get' | 'post' | 'patch' | 'delete', data: AnyObject, config: AxiosRequestConfig): Promise<T> => {
       setIsFetching(true);
       let result = null;
 
@@ -41,30 +36,25 @@ const useRequest = ({ endpoint, initIsFetching = false }: Args): Response => {
         const response = await axios[method].call(axios, ...args);
         result = response.data;
       } catch (e) {
-        if (onError) {
-          onError(e);
-        } else {
-          toast.error(t('common.messages.smthWrong'));
-          throw e;
-        }
+        throw e;
       } finally {
         setIsFetching(false);
       }
       return result;
     },
-    [t, endpoint],
+    [endpoint],
   );
 
   const get = useCallback(
-    <T>(params: AnyObject = {}, onError?: (e: Error) => void): Promise<T> => {
-      return processRequest('get', {}, { params }, onError);
+    <T>(params: AnyObject = {}): Promise<T> => {
+      return processRequest('get', {}, { params });
     },
     [processRequest],
   );
 
   const create = useCallback(
-    <T>(params: T, onError?: (e: Error) => void): Promise<T> => {
-      return processRequest('post', params, {}, onError);
+    <T>(params: T): Promise<T> => {
+      return processRequest('post', params, {});
     },
     [processRequest],
   );

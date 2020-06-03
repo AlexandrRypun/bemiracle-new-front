@@ -76,22 +76,21 @@ const CategoryPage: React.FC = () => {
   }, [match.params.categoryId]);
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      const response = await get<GetManyResponse<Product>>(
-        {
+      try {
+        const response = await get<GetManyResponse<Product>>({
           categoryId: match.params.categoryId,
           take: filters.perPage,
           skip: (filters.page - 1) * filters.perPage,
           orderBy: filters.sortBy,
-        },
-        error => {
-          console.error(error);
-        },
-      );
-      const { data: products = [], total = 0 } = response || {};
-      setProducts({
-        products,
-        total,
-      });
+        });
+        const { data: products = [], total = 0 } = response || {};
+        setProducts({
+          products,
+          total,
+        });
+      } catch (e) {
+        console.error(e);
+      }
     };
     fetchData();
   }, [match, filters, get]);
@@ -103,8 +102,12 @@ const CategoryPage: React.FC = () => {
   });
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      const response = await getCategory<Category>({}, () => history.push('/'));
-      setCategory(response || null);
+      try {
+        const response = await getCategory<Category>({});
+        setCategory(response || null);
+      } catch (e) {
+        history.push('/');
+      }
     };
     fetchData();
   }, [history, match, getCategory]);

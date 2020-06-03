@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useMemo } from 'react';
 import { Formik, Field } from 'formik';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import OrderProducts from '../../components/checkout/order-products';
 import PaymentMethods from '../../components/checkout/payment-methods';
@@ -10,11 +11,13 @@ import { PAYMENT_METHOD } from '../../types/orders';
 import { OrderSchema } from './validationSchemas';
 import useRequest from '../../hooks/use-request';
 import { CartContext } from '../../contexts/cart';
+import Button from '../../components/button';
 
 import './styles.css';
 
 const Checkout: React.FC = () => {
   const { products } = useContext(CartContext);
+  const { t } = useTranslation();
 
   const { create } = useRequest({ endpoint: 'orders' });
 
@@ -23,9 +26,11 @@ const Checkout: React.FC = () => {
       try {
         await create(values);
         toast.success('Order has been successfully created!');
-      } catch (e) {}
+      } catch (e) {
+        toast.error(t('common.messages.smthWrong'));
+      }
     },
-    [create],
+    [create, t],
   );
 
   const initialValues = useMemo(
@@ -128,9 +133,7 @@ const Checkout: React.FC = () => {
                       .
                     </p>
                   </div>
-                  <button type="submit" className="submit-order" value="Place order">
-                    Place order
-                  </button>
+                  <Button label="Place order" type="submit" className="submit-order" />
                 </div>
               </div>
             </div>

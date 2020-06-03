@@ -1,12 +1,15 @@
 import React from 'react';
 import { Field, useField } from 'formik';
 
+import './styles.css';
+
 type Props = {
   id: string;
   name: string;
   label: string;
   wrapperClasses?: string;
   required?: boolean;
+  type?: 'text' | 'password';
 };
 const Input: React.FC<Props> = ({ label, wrapperClasses = '', required = false, ...props }) => {
   const [field, { touched, error }] = useField(props);
@@ -17,7 +20,7 @@ const Input: React.FC<Props> = ({ label, wrapperClasses = '', required = false, 
         {label}
         {required && ' *'}
       </label>
-      <Field {...field} {...props} type="text" />
+      <Field type="text" {...field} {...props} />
       {error && touched ? <p className="field-error">{error}</p> : null}
     </div>
   );

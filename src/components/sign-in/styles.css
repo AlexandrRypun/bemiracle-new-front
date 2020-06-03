@@ -1,0 +1,50 @@
+.login-form .lost-password {
+    float: right;
+    text-align: center;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 600;
+    padding-top: 7px;
+    display: block;
+}
+.login-form .lost-password a {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 6px;
+}
+.lost-password a:not(:hover) {
+    color: inherit;
+}
+.login-form .lost-password a::before {
+    content: '';
+    border-bottom: 1px solid;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.login-form .buttons {
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    padding-top: 9px;
+    margin-bottom: 10px;
+}
+.login-form .login-button {
+    float: left;
+    min-width: 160px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 400px) {
+    .login-form  {
+        text-align: center;
+    }
+    .login-form .login-button {
+        float: none;
+    }
+    .login-form .lost-password {
+        float: none;
+        margin-top: 15px;
+    }
+}

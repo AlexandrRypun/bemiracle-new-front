@@ -24,6 +24,12 @@ const translation = {
   checkout: {
     placeOrder: 'Заказать',
   },
+  signIn: {
+    messages: {
+      wrongCred: 'Email или пароль неверны',
+      hiUser: 'Привет, {{name}}',
+    },
+  },
 };
 
 export default { translation };
