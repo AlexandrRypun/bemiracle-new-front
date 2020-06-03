@@ -17,6 +17,7 @@ import SignIn from './pages/sign-in';
 import BrowserProvider from './contexts/browser';
 import CartProvider from './contexts/cart';
 import BreadcrumbsProvider from './contexts/breadcrumbs';
+import UserProvider from './contexts/user';
 
 import './assets/css/bootstrap.min.css';
 // import './assets/css/animate.css';
@@ -36,23 +37,25 @@ const App: React.FC = () => (
   <BrowserProvider>
     <CartProvider>
       <BreadcrumbsProvider>
-        <>
-          <Header />
-          <Breadcrumbs />
-          <div className="main-container container">
-            <Switch>
-              <Route path="/" exact component={HomePage} />
-              <Route path="/about-us" component={AboutUs} />
-              <Route path="/category/:categoryId" component={Category} />
-              <Route path="/products/:productId" component={Product} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/checkout" component={Checkout} />
-              <Route path="/signin" component={SignIn} />
-            </Switch>
-            <ToastContainer limit={4} />
-          </div>
-          <Footer />
-        </>
+        <UserProvider>
+          <>
+            <Header />
+            <Breadcrumbs />
+            <div className="main-container container">
+              <Switch>
+                <Route path="/" exact component={HomePage} />
+                <Route path="/about-us" component={AboutUs} />
+                <Route path="/category/:categoryId" component={Category} />
+                <Route path="/products/:productId" component={Product} />
+                <Route path="/cart" component={Cart} />
+                <Route path="/checkout" component={Checkout} />
+                <Route path="/signin" component={SignIn} />
+              </Switch>
+              <ToastContainer limit={4} />
+            </div>
+            <Footer />
+          </>
+        </UserProvider>
       </BreadcrumbsProvider>
     </CartProvider>
   </BrowserProvider>

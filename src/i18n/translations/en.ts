@@ -30,6 +30,12 @@ const translation = {
       hiUser: 'Hi, {{name}}',
     },
   },
+  userMenu: {
+    myProfile: 'My Profile',
+    myOrders: 'My Orders',
+    signIn: 'Sign In',
+    signOut: 'Sign Out',
+  },
 };
 
 export default { translation };

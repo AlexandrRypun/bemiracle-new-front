@@ -11,13 +11,16 @@ span.user-menu {
     transition: color 0.25s, border-color 0.25s, background-color 0.25s, opacity 0.25s, width 0.25s ease 0s;
 }
 span.user-menu:hover,
-ul.user-menu-content li span:hover {
+ul.user-menu-content li span:hover,
+ul.user-menu-content li a:hover {
     color: #fa8f47;
 }
-ul.user-menu-content li span {
+ul.user-menu-content li span,
+ul.user-menu-content li a {
     color: #777777;
     display: block;
     font-size: 14px;
     line-height: 32px;
     cursor: pointer;
+    transition: color 0.25s;
 }

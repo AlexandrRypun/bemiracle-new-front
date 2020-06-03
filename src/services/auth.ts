@@ -9,13 +9,17 @@ export const setTokens = (tokens: AuthTokens): void => {
   localStorage.setItem('refreshToken', tokens.refreshToken);
 };
 
+export const cleanAuthTokens = (): void => {
+  localStorage.removeItem('refreshToken');
+  localStorage.removeItem('accessToken');
+};
+
 export const refreshTokens = async (): Promise<boolean> => {
   let redirect = false;
   const oldRefreshToken = localStorage.getItem('refreshToken');
 
   if (oldRefreshToken) {
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('accessToken');
+    cleanAuthTokens();
     try {
       const response = await axios.put<AuthTokens>(
         `${process.env.REACT_APP_API_DOMAIN}/auth/refreshTokens`,

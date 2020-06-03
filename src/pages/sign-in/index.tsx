@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import SignIn from '../../components/sign-in';
+import { UserContext } from '../../contexts/user';
 
 import './styles.css';
 
 const SignInPage: React.FC = () => {
-  return (
+  const { user } = useContext(UserContext);
+
+  return user ? (
+    <Redirect to="/" />
+  ) : (
     <div className="login-page">
       <h2>Login</h2>
       <SignIn />

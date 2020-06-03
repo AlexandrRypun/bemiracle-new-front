@@ -30,6 +30,12 @@ const translation = {
       hiUser: 'Привіт, {{name}}',
     },
   },
+  userMenu: {
+    myProfile: 'Мій профіль',
+    myOrders: 'Мої замовлення',
+    signIn: 'Ввійти',
+    signOut: 'Вийти',
+  },
 };
 
 export default { translation };

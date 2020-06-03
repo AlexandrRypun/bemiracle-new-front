@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
@@ -10,10 +10,12 @@ import Button from '../button';
 import useRequest from '../../hooks/use-request';
 import { AuthTokens } from '../../types/common';
 import { setTokens, decodeJWTToken } from '../../services/auth';
+import { UserContext } from '../../contexts/user';
 
 import './styles.css';
 
 const SignIn: React.FC = () => {
+  const { setUser } = useContext(UserContext);
   const { t } = useTranslation();
 
   const initialValues = useMemo(
@@ -31,15 +33,16 @@ const SignIn: React.FC = () => {
       try {
         const tokens = await create<AuthTokens>(values);
         setTokens(tokens);
-        const user = decodeJWTToken('tokens.accessToken');
+        const user = decodeJWTToken(tokens.accessToken);
         if (user) {
           toast.success(t('signIn.messages.hiUser', { name: `${user.name} ${user.surname}` }));
+          setUser(user);
         }
       } catch (e) {
         toast.error(t('signIn.messages.wrongCred'));
       }
     },
-    [create, t],
+    [create, setUser, t],
   );
 
   return (
