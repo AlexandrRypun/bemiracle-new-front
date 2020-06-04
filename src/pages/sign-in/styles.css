@@ -6,6 +6,31 @@
     max-width: 100%;
     margin: 0 auto;
 }
+.login-page h2 {
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+.login-page h2::before {
+    content: "\f101";
+    font-family: 'Flaticon', sans-serif;
+    display: inline-block;
+    min-width: 84px;
+    height: 84px;
+    line-height: 80px;
+    border-radius: 50%;
+    background-color: #fa8f47;
+    color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    margin-right: 20px;
+    font-size: 31px;
+    font-weight: normal;
+    letter-spacing: 0;
+}
 @media (max-width: 1199px) {
     .login-page {
         padding-left: 15px;
