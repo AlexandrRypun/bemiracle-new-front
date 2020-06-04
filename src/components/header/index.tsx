@@ -169,23 +169,7 @@ const Header: React.FC = () => {
               <div className="header-control-inner">
                 <div className="meta-dreaming">
                   <div className="menu-item block-user block-dreaming akasha-dropdown">
-                    <a className="block-link" href="#">
-                      <span className="flaticon-profile" />
-                    </a>
-                    <ul className="sub-menu">
-                      <li className="menu-item akasha-MyAccount-navigation-link akasha-MyAccount-navigation-link--orders">
-                        <a href="#">Orders</a>
-                      </li>
-                      <li className="menu-item akasha-MyAccount-navigation-link akasha-MyAccount-navigation-link--edit-adchair">
-                        <a href="#">Addresses</a>
-                      </li>
-                      <li className="menu-item akasha-MyAccount-navigation-link akasha-MyAccount-navigation-link--edit-account">
-                        <a href="#">Account details</a>
-                      </li>
-                      <li className="menu-item akasha-MyAccount-navigation-link akasha-MyAccount-navigation-link--customer-logout">
-                        <a href="#">Logout</a>
-                      </li>
-                    </ul>
+                    <UserMenuDropdown />
                   </div>
                   <CartIcon />
                 </div>
