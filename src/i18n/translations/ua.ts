@@ -34,6 +34,7 @@ const translation = {
     myProfile: 'Мій профіль',
     myOrders: 'Мої замовлення',
     signIn: 'Ввійти',
+    signUp: 'Зареєструватися',
     signOut: 'Вийти',
   },
 };

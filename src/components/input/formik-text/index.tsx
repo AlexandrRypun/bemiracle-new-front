@@ -6,7 +6,7 @@ import './styles.css';
 type Props = {
   id: string;
   name: string;
-  label: string;
+  label: string | React.ReactElement;
   wrapperClasses?: string;
   required?: boolean;
   type?: 'text' | 'password';

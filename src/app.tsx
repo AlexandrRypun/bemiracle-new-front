@@ -14,6 +14,7 @@ import Product from './pages/product';
 import Cart from './pages/cart';
 import Checkout from './pages/checkout';
 import SignIn from './pages/sign-in';
+import SignUp from './pages/sign-up';
 import BrowserProvider from './contexts/browser';
 import CartProvider from './contexts/cart';
 import BreadcrumbsProvider from './contexts/breadcrumbs';
@@ -50,6 +51,7 @@ const App: React.FC = () => (
                 <Route path="/cart" component={Cart} />
                 <Route path="/checkout" component={Checkout} />
                 <Route path="/signin" component={SignIn} />
+                <Route path="/signup" component={SignUp} />
               </Switch>
               <ToastContainer limit={4} />
             </div>

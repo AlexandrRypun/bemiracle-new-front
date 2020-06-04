@@ -34,6 +34,7 @@ const translation = {
     myProfile: 'Мой профиль',
     myOrders: 'Мои заказы',
     signIn: 'Ввойти',
+    signUp: 'Зарегистрироваться',
     signOut: 'Выйти',
   },
 };

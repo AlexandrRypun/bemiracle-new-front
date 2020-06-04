@@ -37,39 +37,37 @@ const UserMenuDropdown: React.FC = () => {
   }, [setUser, menuClickHandler]);
 
   const items = useMemo(
-    (): MenuItem[] => [
-      { label: t('userMenu.myProfile'), link: 'profile', onClick: menuClickHandler },
-      { label: t('userMenu.myOrders'), link: 'orders', onClick: menuClickHandler },
-      { label: t('userMenu.signOut'), onClick: logoutHandler },
-    ],
-    [menuClickHandler, logoutHandler, t],
+    (): MenuItem[] =>
+      user
+        ? [
+            { label: t('userMenu.myProfile'), link: '/profile', onClick: menuClickHandler },
+            { label: t('userMenu.myOrders'), link: '/orders', onClick: menuClickHandler },
+            { label: t('userMenu.signOut'), onClick: logoutHandler },
+          ]
+        : [
+            { label: t('userMenu.signIn'), link: '/signin', onClick: menuClickHandler },
+            { label: t('userMenu.signUp'), link: '/signup', onClick: menuClickHandler },
+          ],
+    [user, menuClickHandler, logoutHandler, t],
   );
 
   const content = useMemo(
     () => (
       <ul className="user-menu-content">
-        {user ? (
-          items.map((item, i) => (
-            <li key={i}>
-              {item.link ? (
-                <Link to={item.link} onClick={item.onClick}>
-                  {item.label}
-                </Link>
-              ) : (
-                <span onClick={item.onClick}>{item.label}</span>
-              )}
-            </li>
-          ))
-        ) : (
-          <li>
-            <Link to="/signin" onClick={menuClickHandler}>
-              {t('userMenu.signIn')}
-            </Link>
+        {items.map((item, i) => (
+          <li key={i}>
+            {item.link ? (
+              <Link to={item.link} onClick={item.onClick}>
+                {item.label}
+              </Link>
+            ) : (
+              <span onClick={item.onClick}>{item.label}</span>
+            )}
           </li>
-        )}
+        ))}
       </ul>
     ),
-    [items, menuClickHandler, t, user],
+    [items],
   );
   return <SlideDropdown element={MainElement} DDContent={content} closeTrigger={closeTrigger} />;
 };

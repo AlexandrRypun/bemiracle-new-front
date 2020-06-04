@@ -1,0 +1,66 @@
+.registration-page {
+    width: 50%;
+    background-color: #f6f6f6;
+    padding: 30px 25px;
+    border-radius: 0;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.registration-page h2 {
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+.registration-page h2::before {
+    content: "\f040";
+    font-family: 'FontAwesome', sans-serif;
+    display: inline-block;
+    min-width: 84px;
+    height: 84px;
+    line-height: 80px;
+    border-radius: 50%;
+    background-color: #fa8f47;
+    color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    margin-right: 20px;
+    font-size: 31px;
+    font-weight: normal;
+    letter-spacing: 0;
+}
+.registration-form .buttons {
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    padding-top: 9px;
+    margin-bottom: 0;
+}
+.registration-form .registration-button {
+    float: left;
+    min-width: 160px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 1199px) {
+    .registration-page {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+@media (max-width: 991px) {
+    .registration-page {
+        width: 100%;
+        min-height: 0;
+    }
+}
+@media (max-width: 400px) {
+    .registration-form  {
+        text-align: center;
+    }
+    .registration-form .registration-button {
+        float: none;
+    }
+}

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { refreshTokens } from './auth';
 
@@ -22,7 +22,7 @@ apiClient.interceptors.response.use(
   response => {
     return response;
   },
-  async error => {
+  async (error: AxiosError) => {
     if (error.response && error.response.status === 401 && error.config.url !== 'auth/signin') {
       const success = await refreshTokens();
       if (success) {

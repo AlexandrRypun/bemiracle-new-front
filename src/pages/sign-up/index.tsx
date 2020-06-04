@@ -1,45 +1,111 @@
-import React from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { Formik, FormikHelpers } from 'formik';
 
-const LoginPage: React.FC = () => {
-  return (
-    <div className="u-columns col2-set" id="customer_login">
-      <div className="u-column2 col-2">
-        <h2>Register</h2>
-        <form method="post" className="akasha-form akasha-form-register register">
-          <p className="akasha-form-row akasha-form-row--wide form-row form-row-wide">
-            <label htmlFor="reg_email">
-              Email adchair&nbsp;<span className="required">*</span>
-            </label>
-            <input
-              type="email"
-              className="akasha-Input akasha-Input--text input-text"
-              name="email"
-              id="reg_email"
-              autoComplete="email"
-              value=""
+import { UserContext } from '../../contexts/user';
+import useRequest from '../../hooks/use-request';
+import { SignUpSchema } from './validationSchemas';
+import Input from '../../components/input/formik-text';
+import Button from '../../components/button';
+import { User } from '../../types/users';
+import { extractFieldErrors } from '../../utils/common';
+
+import './styles.css';
+
+const SignUpPage: React.FC = () => {
+  const { user } = useContext(UserContext);
+  const { t } = useTranslation();
+  const history = useHistory();
+
+  const initialValues: User = useMemo(
+    () => ({
+      name: '',
+      surname: '',
+      email: '',
+      password: '',
+      repeatPassword: '',
+      phone: '+380',
+      city: '',
+      novaPoshtaDep: null,
+    }),
+    [],
+  );
+
+  const { create } = useRequest({ endpoint: 'auth/signup' });
+
+  const submitHandler = useCallback(
+    async (values, { setFieldError }: FormikHelpers<User>) => {
+      try {
+        await create(values);
+        toast.success(t('signUp.messages.success'));
+        history.push('/');
+      } catch (e) {
+        let showGeneralError = true;
+        const fieldErrors = extractFieldErrors(e);
+        Object.entries(fieldErrors).forEach(([field, message]) => {
+          setFieldError(field, message);
+          showGeneralError = false;
+        });
+        if (showGeneralError) {
+          toast.error(t('common.messages.smthWrong'));
+        }
+      }
+    },
+    [create, history, t],
+  );
+
+  return user ? (
+    <Redirect to="/" />
+  ) : (
+    <div className="registration-page">
+      <h2>Register</h2>
+      <Formik initialValues={initialValues} onSubmit={submitHandler} validationSchema={SignUpSchema}>
+        {({ handleSubmit }): JSX.Element => (
+          <form className="registration-form" onSubmit={handleSubmit}>
+            <Input id="name" name="name" label="Name" required wrapperClasses="form-row-first" />
+            <Input id="surname" name="surname" label="Surname" required wrapperClasses="form-row-last" />
+            <div className="clear" />
+            <Input
+              id="password"
+              name="password"
+              label="Password"
+              type="password"
+              required
+              wrapperClasses="form-row-first"
             />
-          </p>
-          <div className="akasha-privacy-policy-text">
-            <p>
-              Your personal data will be used to support your experience throughout this website, to manage access to
-              your account, and for other purposes described in our{' '}
-              <a href="#" className="akasha-privacy-policy-link" target="_blank">
-                privacy policy
-              </a>
-              .
+            <Input
+              id="repeatPassword"
+              name="repeatPassword"
+              label="Repeat password"
+              type="password"
+              required
+              wrapperClasses="form-row-last"
+            />
+            <div className="clear" />
+            <Input id="email" name="email" label="Email" required wrapperClasses="form-row-first" />
+            <Input
+              id="phone"
+              name="phone"
+              label={
+                <>
+                  Phone <span className="label-help-text">(+380XXXXXXXXX)</span>
+                </>
+              }
+              wrapperClasses="form-row-last"
+            />
+            <div className="clear" />
+            <Input id="city" name="city" label="City" wrapperClasses="form-row-first" />
+            <Input id="novaPoshtaDep" name="novaPoshtaDep" label="Nova Poshta Dep" wrapperClasses="form-row-last" />
+            <p className="buttons">
+              <Button label="Register" type="submit" className="registration-button" />
             </p>
-          </div>
-          <p className="akasha-FormRow form-row">
-            <input type="hidden" id="akasha-register-nonce" name="akasha-register-nonce" value="45fae70a87" />
-            <input type="hidden" name="_wp_http_referer" value="/akasha/my-account/" />
-            <button type="submit" className="akasha-Button button" name="register" value="Register">
-              Register
-            </button>
-          </p>
-        </form>
-      </div>
+          </form>
+        )}
+      </Formik>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

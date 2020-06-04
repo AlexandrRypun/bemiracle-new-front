@@ -30,10 +30,16 @@ const translation = {
       hiUser: 'Hi, {{name}}',
     },
   },
+  signUp: {
+    messages: {
+      success: 'Congratulates! Now you can sign in with your credentials',
+    },
+  },
   userMenu: {
     myProfile: 'My Profile',
     myOrders: 'My Orders',
     signIn: 'Sign In',
+    signUp: 'Sign Up',
     signOut: 'Sign Out',
   },
 };
