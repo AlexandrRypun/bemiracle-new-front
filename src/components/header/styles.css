@@ -27,3 +27,13 @@
     vertical-align: middle;
     width: 33.33333333%;
 }
+
+@media (max-width: 991px) {
+    .header-logo svg {
+        width: 130px;
+    }
+    .header .header-mobile .header-mobile-left .left-menu {
+        padding-right: 0;
+        padding-left: 5px;
+    }
+}

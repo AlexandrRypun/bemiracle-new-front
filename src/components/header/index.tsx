@@ -152,7 +152,7 @@ const Header: React.FC = () => {
                   <span />
                 </span>
               </div>
-              <ul className="wpml-menu">
+              <ul className="wpml-menu left-menu">
                 <li className="menu-item akasha-dropdown block-language">
                   <LanguageDropdown />
                 </li>

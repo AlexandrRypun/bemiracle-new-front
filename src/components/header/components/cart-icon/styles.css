@@ -8,6 +8,7 @@
     text-align: center;
     position: relative;
     color: #000000;
+    margin-right: 10px;
     transition: color 0.25s, border-color 0.25s, background-color 0.25s, opacity 0.25s, width 0.25s ease 0s;
 }
 .cart-icon .icon:hover {
@@ -37,4 +38,10 @@
 }
 .cart-icon .products-list {
     overflow-y: auto;
+}
+
+@media (max-width: 991px) {
+    .cart-icon .icon {
+        width: 30px;
+    }
 }
