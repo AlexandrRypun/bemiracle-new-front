@@ -22,7 +22,7 @@ export const refreshTokens = async (): Promise<boolean> => {
     cleanAuthTokens();
     try {
       const response = await axios.put<AuthTokens>(
-        `${process.env.REACT_APP_API_DOMAIN}/auth/refreshTokens`,
+        `${process.env.REACT_APP_API_URL}/auth/refreshTokens`,
         {},
         {
           headers: { RefreshToken: oldRefreshToken },

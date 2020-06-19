@@ -42,6 +42,29 @@ const translation = {
     signUp: 'Sign Up',
     signOut: 'Sign Out',
   },
+  orders: {
+    header: 'My orders',
+    headerAdmin: 'Orders',
+    title: 'Title',
+    status: 'Status',
+    price: 'Price',
+    paymentMethod: 'Payment method',
+    createdDate: 'Date',
+    noOrders: 'There is no orders',
+  },
+  order: {
+    title: 'Order #{{id}}',
+    titleShort: 'Order #{{id}}',
+    status: {
+      new: 'New',
+      sent: 'Sent',
+      retrieved: 'Retrieved',
+    },
+    paymentMethod: {
+      cash: 'Cash',
+      oncard: 'Card',
+    },
+  },
 };
 
 export default { translation };

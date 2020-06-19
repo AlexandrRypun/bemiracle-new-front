@@ -15,22 +15,17 @@ import Cart from './pages/cart';
 import Checkout from './pages/checkout';
 import SignIn from './pages/sign-in';
 import SignUp from './pages/sign-up';
+import Orders from './pages/orders';
 import BrowserProvider from './contexts/browser';
 import CartProvider from './contexts/cart';
 import BreadcrumbsProvider from './contexts/breadcrumbs';
 import UserProvider from './contexts/user';
 
 import './assets/css/bootstrap.min.css';
-// import './assets/css/animate.css';
-// import './assets/css/chosen.min.css';
 import './assets/css/font-awesome.min.css';
-// import './assets/css/jquery.scrollbar.css';
-// import './assets/css/lightbox.min.css';
-// import './assets/css/magnific-popup.css';
 import './assets/css/slick.min.css';
 import './assets/fonts/flaticon.css';
 import './assets/css/megamenu.css';
-// import './assets/css/dreaming-attribute.css';
 import './assets/css/style.css';
 import './index.css';
 
@@ -52,6 +47,7 @@ const App: React.FC = () => (
                 <Route path="/checkout" component={Checkout} />
                 <Route path="/signin" component={SignIn} />
                 <Route path="/signup" component={SignUp} />
+                <Route path="/orders" component={Orders} />
               </Switch>
               <ToastContainer limit={4} />
             </div>

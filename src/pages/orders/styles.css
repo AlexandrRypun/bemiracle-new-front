@@ -1,0 +1,41 @@
+.orders-page .orders-list colgroup .order-name {
+    width: 30%;
+}
+.orders-page .orders-list colgroup .order-status {
+    width: 20%;
+}
+.orders-page .orders-list colgroup .order-price {
+    width: 10%;
+}
+.orders-page .orders-list colgroup .order-payment-method {
+    width: 25%;
+}
+.orders-page .orders-list colgroup .order-date {
+    width: 15%;
+}
+.orders-page .orders-list {
+    color: black;
+}
+.orders-page .orders-list tr {
+    height: 70px;
+}
+.orders-page .orders-list th,
+.orders-page .orders-list td {
+    padding: 20px;
+}
+
+@media (max-width: 600px) {
+    .orders-page .orders-list tr {
+        height: 50px;
+    }
+    .orders-page .orders-list th,
+    .orders-page .orders-list td {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 370px) {
+    .orders-page .orders-list .payment-method {
+        display: none;
+    }
+}

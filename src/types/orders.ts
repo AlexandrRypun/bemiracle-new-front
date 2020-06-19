@@ -19,17 +19,17 @@ export interface OrderProduct {
 }
 
 export interface Order {
-  id?: number;
-  price?: number;
-  status?: ORDER_STATUS;
+  id: number;
+  price: number;
+  status: ORDER_STATUS;
   paymentMethod: PAYMENT_METHOD;
-  readonly createdAt?: Date;
+  readonly createdAt: string;
   customerName: string;
   customerSurname: string;
   customerPhone: string;
-  customerEmail?: string;
+  customerEmail: string;
   customerCity: string;
   customerNovaPoshtaDep: number;
-  comments?: string;
+  comments: string;
   products: OrderProduct[];
 }

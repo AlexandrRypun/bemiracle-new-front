@@ -3622,14 +3622,15 @@ th, td {
 	}
 }
 @media (max-width: 767px) {
-	.header-mobile {
-		/*table-layout: fixed;*/
+	.header-mobile .header-mobile-left {
+		min-width: 65px;
 	}
-	.header-mobile .header-mobile-left,
+	.header-mobile .header-mobile-mid {
+		width: 130px;
+	}
 	.header-mobile .header-mobile-right {
-		width: calc(50% - 65px);
+		min-width: 80px;
 	}
-
 }
 /* ==========================================================================
 4.0 FOOTER THEME

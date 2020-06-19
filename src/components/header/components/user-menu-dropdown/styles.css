@@ -10,10 +10,10 @@ span.user-menu {
     cursor: pointer;
     transition: color 0.25s, border-color 0.25s, background-color 0.25s, opacity 0.25s, width 0.25s ease 0s;
 }
-span.user-menu:hover,
 ul.user-menu-content {
     padding: 0 10px;
 }
+span.user-menu:hover,
 ul.user-menu-content li span:hover,
 ul.user-menu-content li a:hover {
     color: #fa8f47;

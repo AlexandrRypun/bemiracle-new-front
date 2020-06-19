@@ -37,6 +37,29 @@ const translation = {
     signUp: 'Зареєструватися',
     signOut: 'Вийти',
   },
+  orders: {
+    header: 'Мої замовлення',
+    headerAdmin: 'Замовлення',
+    title: 'Назва',
+    status: 'Статус',
+    price: 'Ціна',
+    paymentMethod: 'Метод оплати',
+    createdDate: 'Дата',
+    noOrders: 'Нема замовлень',
+  },
+  order: {
+    title: 'Замовлення #{{id}}',
+    titleShort: 'Зам. #{{id}}',
+    status: {
+      new: 'Новий',
+      sent: 'Відправлений',
+      retrieved: 'Отриманий',
+    },
+    paymentMethod: {
+      cash: 'Готівка',
+      oncard: 'На карту',
+    },
+  },
 };
 
 export default { translation };
